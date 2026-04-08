@@ -1,0 +1,51 @@
+@startuml
+
+package entities{
+class Customer(){
+- String: firstName
+- String: lastName
+- String: role
+- String: email
+- String: password
+- double: balance
+- int: userID
+
++ String: getFirstName()
++ String: getLastName()
++ String: getRole()
++ String: getEmail()
++ String: getPassword()
++ double: getBalance()
++ int: getUserID()
++ double: setBalance()
+}
+
+class Administrator(){
++ String: firstName
++ String: lastName
++ String: role
++ String: email
++ String: password
++ double: balance
++ int: userID
+
++ String: getFirstName()
++ String: getLastName()
++ String: getRole()
++ String: getEmail()
++ String: getPassword()
++ double: getBalance()
++ int: getUserID()
++ double: setBalance()
+}
+}
+
+class UserMapper{
++ login()
++ createAccount()
+}
+
+class UserController{
+}
+
+@enduml
