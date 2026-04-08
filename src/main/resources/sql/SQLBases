@@ -1,0 +1,6 @@
+INSERT INTO bases (name, price) VALUES
+(1, 'chocolate', 5.00),
+(2, 'vanilla', 5.00),
+(3, 'nutmeg', 5.00),
+(4, 'pistacio', 6.00),
+(5, 'almond', 7.00);

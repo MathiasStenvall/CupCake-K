@@ -1,0 +1,2 @@
+INSERT INTO users (first_name, last_name, role, email, password, balance) VALUES
+('christian', 'kenter', 'admin', 'ckenter@gmail.com', 1234, 1000)
