@@ -1,0 +1,99 @@
+BEGIN;
+
+
+CREATE TABLE IF NOT EXISTS public.users
+(
+    user_id serial NOT NULL,
+    first_name character varying NOT NULL,
+    last_name character varying NOT NULL,
+    role character varying NOT NULL,
+    email character varying NOT NULL,
+    password character varying NOT NULL,
+    balance numeric NOT NULL DEFAULT 0.00,
+    PRIMARY KEY (user_id)
+);
+
+CREATE TABLE IF NOT EXISTS public.orders
+(
+    order_id serial NOT NULL,
+    user_id integer NOT NULL,
+    date character varying NOT NULL,
+    price numeric,
+    paid boolean NOT NULL DEFAULT false,
+    PRIMARY KEY (order_id)
+);
+
+CREATE TABLE IF NOT EXISTS public.orders_cupcakes
+(
+    order_cupcake_id serial NOT NULL,
+    order_id integer NOT NULL,
+    cupcake_id integer NOT NULL,
+    amount integer NOT NULL,
+    PRIMARY KEY (order_cupcake_id)
+);
+
+CREATE TABLE IF NOT EXISTS public.cupcakes
+(
+    cupcake_id serial NOT NULL,
+    topping_id integer NOT NULL,
+    base_id integer NOT NULL,
+    price numeric NOT NULL,
+    PRIMARY KEY (cupcake_id)
+);
+
+CREATE TABLE IF NOT EXISTS public.toppings
+(
+    topping_id serial NOT NULL,
+    name character varying NOT NULL,
+    price numeric NOT NULL,
+    PRIMARY KEY (topping_id)
+);
+
+CREATE TABLE IF NOT EXISTS public.bases
+(
+    base_id serial NOT NULL,
+    name character varying NOT NULL,
+    price numeric NOT NULL,
+    PRIMARY KEY (base_id)
+);
+
+ALTER TABLE IF EXISTS public.orders
+    ADD CONSTRAINT user_id FOREIGN KEY (user_id)
+    REFERENCES public.users (user_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public.orders_cupcakes
+    ADD CONSTRAINT order_id FOREIGN KEY (order_id)
+    REFERENCES public.orders (order_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public.orders_cupcakes
+    ADD FOREIGN KEY (cupcake_id)
+    REFERENCES public.cupcakes (cupcake_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public.cupcakes
+    ADD FOREIGN KEY (topping_id)
+    REFERENCES public.toppings (topping_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+
+ALTER TABLE IF EXISTS public.cupcakes
+    ADD FOREIGN KEY (base_id)
+    REFERENCES public.bases (base_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+END;
