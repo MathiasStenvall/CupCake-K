@@ -1,51 +1,97 @@
 @startuml
 
-package entities{
-class Customer(){
-- String: firstName
-- String: lastName
-- String: role
-- String: email
-- String: password
-- double: balance
-- int: userID
+package entities {
+class Client {
+- userID: int
+- firstName: String
+- lastName: String
+- role: String
+- email: String
+- password: String
+- balance: double
 
-+ String: getFirstName()
-+ String: getLastName()
-+ String: getRole()
-+ String: getEmail()
-+ String: getPassword()
-+ double: getBalance()
-+ int: getUserID()
-+ double: setBalance()
++ getUserID(): int
++ getFirstName(): String
++ getLastName(): String
++ getRole(): String
++ getEmail(): String
++ getPassword(): String
++ getBalance(): double
++ setBalance(): double
 }
 
-class Administrator(){
-+ String: firstName
-+ String: lastName
-+ String: role
-+ String: email
-+ String: password
-+ double: balance
-+ int: userID
+class Admin {
+- userID: int
+- firstName: String
+- lastName: String
+- role: String
+- email: String
+- password: String
+- balance: double
 
-+ String: getFirstName()
-+ String: getLastName()
-+ String: getRole()
-+ String: getEmail()
-+ String: getPassword()
-+ double: getBalance()
-+ int: getUserID()
-+ double: setBalance()
++ getUserID(): int
++ getFirstName(): String
++ getLastName(): String
++ getRole(): String
++ getEmail(): String
++ getPassword(): String
++ getBalance(): double
++ setBalance(): double
+}
+
+class Base {
+- variant: String
+- price: double
+
++ getVariant(): String
++ getPrice(): double
+}
+
+class Topping {
+- variant: String
+- price: double
+
++ getVariant(): String
++ getPrice(): double
 }
 }
 
-class UserMapper{
+package config {
+class SessionConfig {
++ sessionConfig(): SessionHandler
+}
+
+class ThymeleafConfig {
++ templateEngine(): TemplateEngine
+}
+}
+
+package persistence {
+class ConnectionPool {
+- instance: ConnectionPool
+- ds: HikariDataSource
+- LOGGER: Logger
+
++ getInstance(): ConnectionPool
++ getConnection(): Connection
+- createHikariConnectionPool(): HikariDataSource
+}
+}
+
+class UserMapper {
 + login()
 + createAccount()
 }
 
-class UserController{
+package controllers {
+class AdminController {
++ addRoutes(app: Javalin, connectionPool: ConnectionPool): void
 }
+class ClientController{
++ addRoutes(app: Javalin, connectionPool: ConnectionPool): void
+}
+}
+
+
 
 @enduml
