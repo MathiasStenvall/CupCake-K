@@ -1,0 +1,10 @@
+INSERT INTO toppings(name, price) VALUES
+('chocolate', 5.00),
+('blueberry', 5.00),
+('raspberry', 5.00),
+('crispy', 6.00),
+('strawberry', 6.00),
+('rum/raisin', 7.00),
+('orange', 8.00),
+('lemon', 8.00),
+('blue cheese', 9.00);
