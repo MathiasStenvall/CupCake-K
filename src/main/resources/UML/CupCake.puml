@@ -82,6 +82,12 @@ class UserMapper {
 + createAccount(): boolean
 }
 
+class UserMapper {
+}
+
+class CupcakeMapper {
+}
+
 class BaseMapper{
 - cp: ConnectionPool
 + getAllBases(): List<Base>
