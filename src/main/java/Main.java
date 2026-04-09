@@ -41,6 +41,8 @@ public class Main {
 
         CupcakeMapper cupcakeMapper = new CupcakeMapper(connectionPool);
         cupcakeMapper.generateCupcakes();
+        CupcakeList cupcakeList = new CupcakeList();
+        cupcakeMapper.getAllCupcakes(cupcakeList);
 
         OrderMapper orderMapper = new OrderMapper(connectionPool);
         OrderList orderList = new OrderList();
