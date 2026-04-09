@@ -32,10 +32,10 @@ public class Main {
         ClientController clientController = new ClientController(app, connectionPool);
         clientController.addRoutes();
 
-        /*Test af login metoden
+        /*Test af login metoden */
         UserMapper usermapper = new UserMapper(connectionPool);
         System.out.println(usermapper.login("ckenter@gmail.com","1234").getRole());
-        */
+
 
         CupcakeMapper cm = new CupcakeMapper(connectionPool);
         cm.generateCupcakes();
