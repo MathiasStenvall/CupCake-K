@@ -1,10 +1,14 @@
 import config.SessionConfig;
 import config.ThymeleafConfig;
+import controllers.AdminController;
+import controllers.ClientController;
+import entities.Cupcake;
+import entities.CupcakeList;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
-import persistence.BaseMapper;
 import persistence.ConnectionPool;
-import persistence.ToppingMapper;
+import persistence.CupcakeMapper;
+
 
 public class Main {
 
@@ -23,11 +27,16 @@ public class Main {
         }).start(7070);
 
         app.get("/", ctx -> ctx.render("Index.html"));
+        AdminController adminCOntroller = new AdminController(app, connectionPool);
+        ClientController clientController = new ClientController(app, connectionPool);
 
-        BaseMapper bm = new BaseMapper(connectionPool);
-        System.out.println(bm.getAllBases());
-        ToppingMapper tm = new ToppingMapper(connectionPool);
-        System.out.println(tm.getAllToppings());
+        CupcakeMapper cm = new CupcakeMapper(connectionPool);
+        cm.generateCupcakes();
+        CupcakeList cupcakeList = new CupcakeList();
+        cm.getAllCupcakes(cupcakeList);
+        for (Cupcake c: cupcakeList.getCupcakeList()){
+            System.out.println(c);
+        }
 
     }
 }
