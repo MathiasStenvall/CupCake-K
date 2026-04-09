@@ -4,10 +4,13 @@ import controllers.AdminController;
 import controllers.ClientController;
 import entities.Cupcake;
 import entities.CupcakeList;
+import entities.Order;
+import entities.OrderList;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 import persistence.ConnectionPool;
 import persistence.CupcakeMapper;
+import persistence.OrderMapper;
 import persistence.UserMapper;
 
 
@@ -36,13 +39,13 @@ public class Main {
         System.out.println(usermapper.login("ckenter@gmail.com","1234").getRole());
         */
 
-        CupcakeMapper cm = new CupcakeMapper(connectionPool);
-        cm.generateCupcakes();
-        CupcakeList cupcakeList = new CupcakeList();
-        cm.getAllCupcakes(cupcakeList);
-        for (Cupcake c: cupcakeList.getCupcakeList()){
-            System.out.println(c);
-        }
+        CupcakeMapper cupcakeMapper = new CupcakeMapper(connectionPool);
+        cupcakeMapper.generateCupcakes();
+
+        OrderMapper orderMapper = new OrderMapper(connectionPool);
+        OrderList orderList = new OrderList();
+        orderMapper.getAllOrders(orderList);
+
 
     }
 }
