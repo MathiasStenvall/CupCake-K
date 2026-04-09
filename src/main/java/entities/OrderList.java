@@ -1,7 +1,5 @@
 package entities;
 
-import persistence.OrderMapper;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +17,24 @@ public class OrderList {
 
     public List<Order> getOrderList(){
         return orderList;
+    }
+
+    public Order findOrderById(int id){
+        for (Order o: orderList){
+            if (o.getOrderId() == id){
+                return o;
+            }
+        }
+        return null;
+    }
+
+    public Order findOrdersByUserId(int userId){
+        for (Order o: orderList){
+            if (o.getUserId() == userId){
+                return o;
+            }
+        }
+        return null;
     }
 
 }

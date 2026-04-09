@@ -9,6 +9,8 @@ public class Cupcake {
     private String toppingName;
     private double price;
 
+    private int amount;
+
     public Cupcake(int id, int base_id, String baseName,
                    int topping_id, String toppingName, double price) {
         this.id = id;
@@ -17,6 +19,14 @@ public class Cupcake {
         this.topping_id = topping_id;
         this.toppingName = toppingName;
         this.price = price;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public String toString (){
