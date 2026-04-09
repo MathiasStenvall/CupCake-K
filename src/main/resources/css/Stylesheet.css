@@ -1,0 +1,288 @@
+html {
+    background-color: #FFF4FB;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    align-items: flex-start;
+}
+
+main {
+    flex: 1;
+}
+
+/* _______________ logo__________________  */
+
+.logoplace {
+    padding-top: 2vh;
+    margin: auto;
+}
+.logoSize {
+    width: clamp(160px, 23%, 260px);
+    heigth: auto;
+}
+
+/* ________________ text __________________  */
+
+h1{
+    font-family: "Indie Flower";
+    font-weight: 600;
+    font-size: clamp(24px, 4vw, 35px);
+}
+
+
+.account a{
+    white-space: nowrap;
+    text-decoration: none;
+    color: black;
+    font-family: "Indie Flower";
+    font-weight: 500;
+    font-size: clamp(20px, 2vw, 22px);
+    padding: 1.5% 0;
+}
+.account li.right {
+    margin-left: auto;
+}
+
+.account a:hover {
+    opacity: 0.7;
+}
+
+
+/* this is for a line under the text */
+.underline{
+    text-decoration: none;
+    color: black;
+    font-family: "Indie Flower";
+    font-weight: 500;
+    font-size: clamp(20px, 1.5vw, 22px);
+    width: 100%;
+    max-width: 70%;
+    margin: 0;
+    padding-left: 5%;
+    text-align: left;
+    text-decoration: underline;
+}
+
+.underline a:hover {
+opacity: 0.7;
+}
+
+.bodyText {
+    text-decoration: none;
+    color: black;
+    font-family: "Indie Flower";
+    font-weight: 500;
+    font-size: clamp(20px, 1.5vw, 22px);
+    width: 100%;
+    max-width: 70%;
+    margin: 0;
+    padding-left: 5%;
+    text-align: left;
+}
+
+
+.bodyTextCenter {
+    text-decoration: none;
+    color: black;
+    font-family: "Indie Flower";
+    font-weight: 500;
+    font-size: clamp(18px, 2vw, 22px);
+    max-width: 60%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* ________________ padding __________________  */
+
+.top-nav {
+    padding-top: 2%;
+}
+
+.navCenter {
+    padding-top: 2%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* ________________ Menu __________________  */
+
+.menu {
+    align-items: center;
+    max-width: 75%;
+    margin: 0 auto;
+    list-style: none;
+    padding: 0;
+    gap: clamp(10px, 4vw, 40px);
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+    font-family: "Indie Flower";
+    font-weight: 500;
+    font-size: clamp(16px, 2vw, 25px);
+    padding: clamp(10px, 2vw, 20px) 0;
+    white-space: nowrap;
+}
+
+.menu a:hover {
+    opacity: 0.7;
+}
+
+
+/*-----------Menu string-------------*/
+
+.menuLine {
+    display: flex;
+    align-items: center;
+    max-width: 80%;
+    height: 3px;
+    color: #3C1072;
+    margin: auto;
+}
+
+
+/* ________________ Footer/ info__________________  */
+
+.footer {
+    position: fixed;
+    width: 100%;
+    height: 35px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    gap: clamp(20px, 5vw, 60px);
+    background-color: black;
+    z-index: 1000;
+    padding: 0;
+    bottom: 2vh;
+}
+
+.footer-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 0;
+    text-align: center;
+}
+
+.footer a {
+    transform: translateY(1px);
+    position: relative;
+    text-decoration: none;
+    color: black;
+    font-family: "Indie Flower";
+    font-weight: 500;
+    font-size: clamp(14px, 2vw, 25px);
+    line-height: 10px;
+    padding: clamp(5px, 1vw, 10px);
+}
+
+
+.footer-divider {
+    position: absolute;
+    left: 0;
+    z-index: 0;
+    width: 65%;
+    height: 2px;
+    background-color: #3C1072;
+}
+
+
+/*-----Log in box and create acc box ------ */
+.login-container {
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    text-align: center;
+    stroke: #3C1072;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 96%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #FFFFFF;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px 0;
+}
+
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #D7D2FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Baskerville Old Face";
+}
+
+button:hover {
+    opacity: 0.7;
+
+}
+
+/*-----------Img---------------*/
+
+.foto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(20px, 5vw, 60px);
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.bigFoto {
+    height: clamp(200px, 20vw, 300px);
+    flex-shrink: 0;
+
+}
+
+.bigFoto img {
+    max-height: 100%;
+    width: auto;
+}
+
+.fotoIkon{
+    height: clamp(10px, 20vw, 30px);
+}
+
