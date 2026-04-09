@@ -5,15 +5,16 @@ public abstract class User {
     private int userID;
     private String firstName;
     private String lastName;
+    private String role;
     private String email;
     private String password;
     private double balance;
 
-    public User(int userID, String firstName, String lastName,
-                String email, String password, double balance) {
+    public User(int userID, String firstName, String lastName, String role, String email, String password, double balance) {
         this.userID = userID;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.role = role;
         this.email = email;
         this.password = password;
         this.balance = balance;
@@ -29,6 +30,10 @@ public abstract class User {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getRole(){
+        return role;
     }
 
     public String getEmail() {
