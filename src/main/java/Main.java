@@ -6,10 +6,9 @@ import entities.Cupcake;
 import entities.CupcakeList;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
-import persistence.BaseMapper;
 import persistence.ConnectionPool;
 import persistence.CupcakeMapper;
-import persistence.ToppingMapper;
+
 
 public class Main {
 
@@ -38,7 +37,6 @@ public class Main {
         for (Cupcake c: cupcakeList.getCupcakeList()){
             System.out.println(c);
         }
-
 
     }
 }
