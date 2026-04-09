@@ -1,5 +1,7 @@
 import config.SessionConfig;
 import config.ThymeleafConfig;
+import controllers.AdminController;
+import controllers.ClientController;
 import entities.Cupcake;
 import entities.CupcakeList;
 import io.javalin.Javalin;
@@ -26,6 +28,8 @@ public class Main {
         }).start(7070);
 
         app.get("/", ctx -> ctx.render("Index.html"));
+        AdminController adminCOntroller = new AdminController(app, connectionPool);
+        ClientController clientController = new ClientController(app, connectionPool);
 
         CupcakeMapper cm = new CupcakeMapper(connectionPool);
         cm.generateCupcakes();

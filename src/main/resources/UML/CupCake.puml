@@ -76,20 +76,42 @@ class ConnectionPool {
 + getConnection(): Connection
 - createHikariConnectionPool(): HikariDataSource
 }
-}
 
 class UserMapper {
-+ login()
-+ createAccount()
++ login(): User
++ createAccount(): boolean
+}
+
+class BaseMapper{
+- cp: ConnectionPool
++ getAllBases(): List<Base>
+}
+
+class ToppingMapper{
+- cp: ConnectionPool
++ getAllToppings(): List<Topping>
+}
 }
 
 package controllers {
 class AdminController {
-+ addRoutes(app: Javalin, connectionPool: ConnectionPool): void
+- app: Javalin
+- connectionPool: ConnectionPool
++ addRoutes(): void
 }
 class ClientController{
-+ addRoutes(app: Javalin, connectionPool: ConnectionPool): void
+- app: Javalin
+- connectionPool: ConnectionPool
++ addRoutes(): void
 }
+}
+
+package service{
+class Calculator(){
+}
+}
+
+class Main(){
 }
 
 @enduml
