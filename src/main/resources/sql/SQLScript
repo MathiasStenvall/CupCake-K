@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS public.cupcakes
     topping_id integer NOT NULL,
     base_id integer NOT NULL,
     price numeric NOT NULL,
-    PRIMARY KEY (cupcake_id)
+    PRIMARY KEY (cupcake_id),
     CONSTRAINT unique_combo UNIQUE (topping_id, base_id)
 );
 
