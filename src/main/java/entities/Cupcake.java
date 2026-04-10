@@ -3,20 +3,20 @@ package entities;
 public class Cupcake {
 
     private int id;
-    private int base_id;
+    private int baseId;
     private String baseName;
-    private int topping_id;
+    private int toppingId;
     private String toppingName;
     private double price;
 
     private int amount;
 
-    public Cupcake(int id, int base_id, String baseName,
-                   int topping_id, String toppingName, double price) {
+    public Cupcake(int id, int baseId, String baseName,
+                   int toppingId, String toppingName, double price) {
         this.id = id;
-        this.base_id = base_id;
+        this.baseId = baseId;
         this.baseName = baseName;
-        this.topping_id = topping_id;
+        this.toppingId = toppingId;
         this.toppingName = toppingName;
         this.price = price;
     }
