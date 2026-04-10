@@ -1,7 +1,8 @@
 @startuml
 
 package entities {
-class Client {
+
+class User {
 - userID: int
 - firstName: String
 - lastName: String
@@ -18,26 +19,24 @@ class Client {
 + getPassword(): String
 + getBalance(): double
 + setBalance(): double
+}
+
+class Client {
++ login(): User
++ createClient(): User
++ createCupcake(): CupCake
++ setBasket(): double
 }
 
 class Admin {
-- userID: int
-- firstName: String
-- lastName: String
-- role: String
-- email: String
-- password: String
-- balance: double
-
-+ getUserID(): int
-+ getFirstName(): String
-+ getLastName(): String
-+ getRole(): String
-+ getEmail(): String
-+ getPassword(): String
-+ getBalance(): double
++ createAdmin(): User
++ getOrder(): Order
++ getCustomer(): User
 + setBalance(): double
 }
+
+User <|-- Client
+User <|-- Admin
 
 class Base {
 - variant: String
@@ -53,6 +52,55 @@ class Topping {
 
 + getVariant(): String
 + getPrice(): double
+}
+
+
+class Cupcake {
+- id: int
+- baseId: int
+- baseName: String
+- toppingId: int
+- toppingName: String
+- price: double
+- amount: int
+
++ getId(): int
++ getBaseId(): int
++ getBaseName(): String
++ getToppingId(): int
++ getToppingName(): String
++ getPrice(): double
++ getAmount(): int
++ setAmount(): int
+
+}
+
+class Basket {
+
+}
+
+class CupcakeList {
+- cupcakeList: List<Cupcake>
++ addCupcake(cupcake: Cupcake): void
++ getCupcakeList(): List<Cupcake>
+}
+
+class Order {
+- orderId: int
+- userId: int
+- date: String
+- price: double
+- paid: boolean
+
++ Har getter... Udfyld
+}
+
+class OrderList {
+- orderList: List<Order>
++ addOrder(order: Order): void
++ getOrderList(): List<Order>
++ getOrderById(): Order
++ getOrderByUserId(): Order
 }
 }
 
@@ -77,16 +125,30 @@ class ConnectionPool {
 - createHikariConnectionPool(): HikariDataSource
 }
 
+
+
 class UserMapper {
 + login(): User
 + createAccount(): boolean
 }
 
-class UserMapper {
-}
+UserMapper --> Admin
+UserMapper --> Client
 
 class CupcakeMapper {
+- cp: ConnectionPool
++ generateCupcake(): void
++ getAllCupcakes(cupcake: List<Cupcake>): void
 }
+
+class OrderMapper {
++ getAllOrders(): void
++ registerOrder(): void
+}
+
+Order <-- OrderList
+OrderList <-- OrderMapper
+
 
 class BaseMapper{
 - cp: ConnectionPool
@@ -104,12 +166,23 @@ class AdminController {
 - app: Javalin
 - connectionPool: ConnectionPool
 + addRoutes(): void
++ createAdmin(): User
++ getOrder(): Order
++ getCustomer(): User
++ setBalance(): double
 }
 class ClientController{
 - app: Javalin
 - connectionPool: ConnectionPool
 + addRoutes(): void
++ login(): User
++ createClient(): User
++ createCupcake(): CupCake
++ setBasket(): double
 }
+
+AdminController --> Admin
+ClientController --> Client
 }
 
 package service{
@@ -117,7 +190,18 @@ class Calculator(){
 }
 }
 
-class Main(){
+class Main{
+- USER: String
+- PASSWORD: String
+- URL: String
+- DB: String
+- connectionPool: ConnectionPool
++ static main(): void
 }
+
+
+Main --> ConnectionPool
+Main --> SessionConfig
+Main --> ThymeleafConfig
 
 @enduml

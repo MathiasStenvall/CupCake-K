@@ -2,8 +2,10 @@ import config.SessionConfig;
 import config.ThymeleafConfig;
 import controllers.AdminController;
 import controllers.ClientController;
+import entities.Admin;
 import entities.Cupcake;
 import entities.CupcakeList;
+import entities.User;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 import persistence.ConnectionPool;
@@ -34,16 +36,15 @@ public class Main {
 
         /*Test af login metoden */
         UserMapper usermapper = new UserMapper(connectionPool);
-        System.out.println(usermapper.login("ckenter@gmail.com","1234").getRole());
+        System.out.println(usermapper.login("ckenter@gmail.com", "1234").getRole());
 
 
         CupcakeMapper cm = new CupcakeMapper(connectionPool);
         cm.generateCupcakes();
         CupcakeList cupcakeList = new CupcakeList();
         cm.getAllCupcakes(cupcakeList);
-        for (Cupcake c: cupcakeList.getCupcakeList()){
+        for (Cupcake c : cupcakeList.getCupcakeList()) {
             System.out.println(c);
         }
-
     }
 }
