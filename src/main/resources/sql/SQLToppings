@@ -7,5 +7,5 @@ INSERT INTO toppings(name, price) VALUES
 ('rum/raisin', 7.00),
 ('orange', 8.00),
 ('lemon', 8.00),
-('blue cheese', 9.00);
+('blue cheese', 9.00),
 ('plain' , 0);
