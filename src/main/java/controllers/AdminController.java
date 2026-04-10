@@ -23,10 +23,10 @@ public class AdminController {
         app.get("e", ctx -> ctx.render(""));
         app.get("f", ctx -> ctx.render(""));
         app.get("g", ctx -> ctx.render(""));
-        app.post("h", ctx -> createAdmin(ctx));
-        app.post("h", ctx -> getOrders(ctx));
+        app.post("i", ctx -> createAdmin(ctx));
+        app.post("j", ctx -> getOrders(ctx));
         app.post("h", ctx -> getCustomer(ctx));
-        app.post("h", ctx -> setBalance(ctx));
+        app.post("z", ctx -> setBalance(ctx));
     }
 
     public void createAdmin(Context ctx){

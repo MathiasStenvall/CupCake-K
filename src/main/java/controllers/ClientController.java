@@ -27,8 +27,8 @@ public class ClientController {
 
         app.post("/creatingAccount", ctx -> createClient(ctx));
         app.post("", ctx -> login(ctx));
-        app.post("h", ctx -> createCupCake(ctx));
-        app.post("h", ctx -> setBasket(ctx));
+        app.post("j", ctx -> createCupCake(ctx));
+        app.post("m", ctx -> setBasket(ctx));
     }
 
     public void login(Context ctx){
