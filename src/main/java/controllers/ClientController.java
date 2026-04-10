@@ -15,15 +15,18 @@ public class ClientController {
     }
 
     public void addRoutes(){
-        app.get("", ctx -> ctx.render(""));
-        app.get("", ctx -> ctx.render(""));
-        app.get("", ctx -> ctx.render(""));
-        app.get("", ctx -> ctx.render(""));
-        app.get("", ctx -> ctx.render(""));
-        app.get("", ctx -> ctx.render(""));
-        app.get("", ctx -> ctx.render(""));
+        app.get("/login", ctx -> ctx.render("Login.html"));
+        app.get("/creatingAccount", ctx -> ctx.render("CreatAccount"));
+        app.get("/ordre", ctx -> ctx.render("Odrersite.html"));
+        app.get("/gallery", ctx -> ctx.render("Gallery.html"));
+        app.get("/index", ctx -> ctx.render("Index.html"));
+        app.get("/basket", ctx -> ctx.render("Basket.html"));
+        app.get("/location", ctx -> ctx.render("info/Location.html"));
+        app.get("/contact", ctx -> ctx.render("info/Contact.html"));
+        app.get("/about", ctx -> ctx.render("info/About.html"));
+
+        app.post("/creatingAccount", ctx -> createClient(ctx));
         app.post("", ctx -> login(ctx));
-        app.post("", ctx -> createClient(ctx));
         app.post("h", ctx -> createCupCake(ctx));
         app.post("h", ctx -> setBasket(ctx));
     }
