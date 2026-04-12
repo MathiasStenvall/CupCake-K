@@ -29,6 +29,30 @@ public class Cupcake {
         this.amount = amount;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public int getBaseId() {
+        return baseId;
+    }
+
+    public String getBaseName() {
+        return baseName;
+    }
+
+    public int getToppingId() {
+        return toppingId;
+    }
+
+    public String getToppingName() {
+        return toppingName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
     public String toString (){
         return baseName + " " + toppingName;
     }
