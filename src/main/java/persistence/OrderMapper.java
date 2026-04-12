@@ -1,12 +1,15 @@
 package persistence;
 
+import entities.Cupcake;
 import entities.Order;
 import entities.OrderList;
+import entities.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class OrderMapper {
 
@@ -39,6 +42,9 @@ public class OrderMapper {
         }
     }
 
+    public void uploadOrder(User user, List<Cupcake> cupcakes){
+
+    }
 
 
 }
