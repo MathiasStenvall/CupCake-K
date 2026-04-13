@@ -35,9 +35,6 @@ class Admin {
 + setBalance(): double
 }
 
-User <|-- Client
-User <|-- Admin
-
 class Base {
 - variant: String
 - price: double
@@ -125,15 +122,10 @@ class ConnectionPool {
 - createHikariConnectionPool(): HikariDataSource
 }
 
-
-
 class UserMapper {
 + login(): User
 + createAccount(): boolean
 }
-
-UserMapper --> Admin
-UserMapper --> Client
 
 class CupcakeMapper {
 - cp: ConnectionPool
@@ -145,10 +137,6 @@ class OrderMapper {
 + getAllOrders(): void
 + registerOrder(): void
 }
-
-Order <-- OrderList
-OrderList <-- OrderMapper
-
 
 class BaseMapper{
 - cp: ConnectionPool
@@ -166,9 +154,9 @@ class AdminController {
 - app: Javalin
 - connectionPool: ConnectionPool
 + addRoutes(): void
-+ createAdmin(): User
++ createAdmin(): Admin
 + getOrder(): Order
-+ getCustomer(): User
++ getCustomer(): Client
 + setBalance(): double
 }
 class ClientController{
@@ -176,13 +164,12 @@ class ClientController{
 - connectionPool: ConnectionPool
 + addRoutes(): void
 + login(): User
-+ createClient(): User
++ createClient(): Client
 + createCupcake(): CupCake
-+ setBasket(): double
++ setBasket(): Basket
 }
 
-AdminController --> Admin
-ClientController --> Client
+
 }
 
 package service{
@@ -199,9 +186,61 @@ class Main{
 + static main(): void
 }
 
+AdminController --> ConnectionPool
+AdminController --> Javalin
+AdminController ..> Admin
+AdminController ..> Order
+AdminController ..> Client
+
+ClientController --> ConnectionPool
+ClientController --> Javalin
+ClientController ..> User
+ClientController ..> Client
+ClientController ..> Cupcake
+ClientController ..> Basket
+
+User --|> Admin
+User --|> Client
+CupcakeList --> Cupcake
+OrderList --> Order
+
+BaseMapper --> ConnectionPool
+BaseMapper ..> Base
+
+ConnectionPool --* ConnectionPool
+ConnectionPool --* HikariDataSource
+ConnectionPool --> Logger
+
+CupcakeMapper --> ConnectionPool
+CupcakeMapper ..> CupcakeList
+CupcakeMapper ..> Cupcake
+
+OrderMapper --> ConnectionPool
+OrderMapper ..> OrderList
+OrderMapper ..> Order
+
+ToppingMapper --> ConnectionPool
+ToppingMapper ..> Topping
+
+UserMapper --> ConnectionPool
+UserMapper ..> User
+UserMapper ..> Admin
+UserMapper ..> Client
 
 Main --> ConnectionPool
 Main --> SessionConfig
 Main --> ThymeleafConfig
+
+ '///// JAVA CODE IN THESE !WILL! BE CHANGED ////
+ Main -up-> AdminController
+ Main --> ClientController
+ Main ---> UserMapper
+ Main ---> CupcakeMapper
+ Main --> CupcakeList
+ Main ---> OrderMapper
+ Main --> OrderList
+ '////////////////////////////////////////////
+
+
 
 @enduml
