@@ -143,6 +143,9 @@ h1 {
 }
 
 /* ________________ Menu __________________  */
+.admin{
+    text-align: center;
+}
 
 .menu {
     position: relative;
@@ -156,6 +159,11 @@ h1 {
     list-style: none;
     column-gap: 0;
 }
+.admin .menu{
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: repeat(4, auto);
+}
 
 .menu li {
     text-align: center;
@@ -166,7 +174,7 @@ h1 {
     color: black;
     font-family: "Indie Flower";
     font-weight: 500;
-    font-size: clamp(16px, 2vw, 25px);
+    font-size: clamp(16px, 2vw, 22px);
     white-space: nowrap;
 }
 
@@ -186,6 +194,8 @@ h1 {
     background-color: #3C1072;
 
 }
+
+
 
 
 /*-----------Menu string-------------*/
