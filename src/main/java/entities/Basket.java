@@ -34,8 +34,7 @@ public class Basket {
         if (basketUser.getBalance() >= basketTotalPrice){
             basketUser.setBalance(basketUser.getBalance() - basketTotalPrice);
 
-            //call a method in OrderMapper xxx(User user, Cupcake cupcake) to add to db
-            orderMapper.uploadOrder(basketUser, basketCupcakes);
+            orderMapper.uploadOrder(basketUser, basketCupcakes, basketTotalPrice);
 
             basketTotalPrice = 0;
             basketCupcakes.clear();

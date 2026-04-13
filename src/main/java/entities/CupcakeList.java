@@ -18,4 +18,8 @@ public class CupcakeList {
     public List<Cupcake> getCupcakeList() {
         return cupcakeList;
     }
+
+    public void findCupcakeID(Cupcake cupcake){
+
+    }
 }
