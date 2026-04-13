@@ -241,6 +241,4 @@ Main --> ThymeleafConfig
  Main --> OrderList
  '////////////////////////////////////////////
 
-
-
 @enduml
