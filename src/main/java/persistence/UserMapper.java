@@ -19,16 +19,14 @@ public class UserMapper {
     }
 
     public User login(String inputEmail, String inputPassword) {
-
-        User user = null;
         String sql = "SELECT user_id, first_name, last_name, role, email, password, balance FROM Users WHERE email = ? AND password = ?";
 
         try (Connection connection = cp.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            preparedStatement.setString(1, inputEmail);
-            preparedStatement.setString(2, inputPassword);
-            ResultSet rs = preparedStatement.executeQuery();
+            ps.setString(1, inputEmail);
+            ps.setString(2, inputPassword);
+            ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 int userID = rs.getInt("user_id");
@@ -50,6 +48,28 @@ public class UserMapper {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public void createClieant(String firstname, String lastname, String email, String password1, String password2) {
+        String createClient = "INSERT INTO users (first_name, last_name, role, email, password)" +
+                "VALUES (?, ?, 'client', ?, ?)";
+
+        try (Connection connection = cp.getConnection();
+             PreparedStatement ps = connection.prepareStatement(createClient)) {
+
+            ps.setString(1, firstname);
+            ps.setString(2, lastname);
+            ps.setString(3, email);
+            ps.setString(4, password1);
+
+            if (password1.equals(password2))
+                ps.executeQuery();
+            else
+                System.out.println("Adgangskode matcher ikke");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
 
