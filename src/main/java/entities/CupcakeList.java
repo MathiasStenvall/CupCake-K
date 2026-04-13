@@ -19,7 +19,13 @@ public class CupcakeList {
         return cupcakeList;
     }
 
-    public void findCupcakeID(Cupcake cupcake){
-
+    public int findCupcakeID(String base, String topping){
+        for (Cupcake c: cupcakeList){
+            if (c.getToppingName().equals(topping) &&
+                    c.getBaseName().equals(base)){
+                return c.getId();
+            }
+        }
+        return 0;
     }
 }

@@ -50,37 +50,58 @@ public class OrderMapper {
 
         String sql = "INSERT INTO orders (user_id, date, price, paid)" +
                 "VALUES (?, ?, ?, true) RETURNING order_id";
-        try (Connection connection = cp.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setInt(1, user.getUserID());
-            ps.setString(2, date);
-            ps.setDouble(3, price);
+        Connection connection = null;
 
-            ResultSet rs = ps.executeQuery();
-            int orderId = -1;
+        try {
+            connection = cp.getConnection();
+            connection.setAutoCommit(false);
 
-            if (!rs.next()) {
-                System.out.println("no order_id returned");
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+
+                ps.setInt(1, user.getUserID());
+                ps.setString(2, date);
+                ps.setDouble(3, price);
+
+                ResultSet rs = ps.executeQuery();
+                int orderId;
+
+                if (rs.next()) {
+                    orderId = rs.getInt("order_id");
+                } else {
+                    throw new SQLException("no order_id returned");
+                }
+
+                uploadOrderDetails(connection, orderId, cupcakes);
+                connection.commit();
             }
-
-            orderId = rs.getInt("order_id");
-
-            uploadOrderDetails(orderId, cupcakes);
-
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException rb) {
+                    rb.printStackTrace();
+                }
+            }
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.setAutoCommit(true);
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
-    public void uploadOrderDetails(int orderId, List<Cupcake> cupcakes) {
+    public void uploadOrderDetails(Connection connection, int orderId, List<Cupcake> cupcakes) throws SQLException {
 
         String sql = "INSERT INTO orders_cupcakes (order_id, cupcake_id, amount)" +
                 "VALUES (?, ?, ?)";
-        try (Connection connection = cp.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)) {
-
-            connection.setAutoCommit(false);
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             for (Cupcake c : cupcakes) {
 
@@ -93,9 +114,7 @@ public class OrderMapper {
 
             ps.executeBatch();
 
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
         }
-    }
 
+    }
 }

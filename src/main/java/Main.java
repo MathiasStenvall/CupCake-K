@@ -2,10 +2,7 @@ import config.SessionConfig;
 import config.ThymeleafConfig;
 import controllers.AdminController;
 import controllers.ClientController;
-import entities.Cupcake;
-import entities.CupcakeList;
-import entities.Order;
-import entities.OrderList;
+import entities.*;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 import persistence.ConnectionPool;
@@ -42,6 +39,7 @@ public class Main {
 
         CupcakeMapper cupcakeMapper = new CupcakeMapper(connectionPool);
         cupcakeMapper.generateCupcakes();
+
         CupcakeList cupcakeList = new CupcakeList();
         cupcakeMapper.getAllCupcakes(cupcakeList);
 
@@ -49,6 +47,24 @@ public class Main {
         OrderList orderList = new OrderList();
         orderMapper.getAllOrders(orderList);
 
+        /* test paying for basket - tested and WORKS!
+        Client mathias = new Client(2,"mathias","stenvall","client", "mstenvall@gmail.com", "1234", 2000);
 
+        Basket basket = new Basket(mathias,connectionPool);
+        Cupcake firstCupcake = new Cupcake(20, 3, "nutmeg", 2, "blueberry",10.00);
+        firstCupcake.setAmount(3);
+        Cupcake secondCupcake = new Cupcake(21, 3,"nutmeg",3,"rasberry",10.00);
+        secondCupcake.setAmount(2);
+
+        basket.addCupcakeToBasket(firstCupcake);
+        basket.addCupcakeToBasket(secondCupcake);
+
+        basket.payBasket();
+        */
+
+        /* testing getCupcakeId - tested and WORKS!
+        System.out.println(cupcakeList.getCupcakeList().size());
+        System.out.println(cupcakeList.findCupcakeID("pistacio","orange"));
+        */
     }
 }
