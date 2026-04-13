@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>login</title>
@@ -8,26 +8,28 @@
 <body>
 <header>
     <div class="header">
-        <div class="logoplace">
-            <a th:href="@{/index}">
-                <img src="/images/logoMuffin.png" class="logoSize">
-            </a>
-        </div>
-
+        <nav class="navCenter">
+            <div class="logoplace">
+                <a th:href="@{/index}">
+                    <img src="/images/logoMuffin.png" class="logoSize">
+                </a>
+            </div>
+        </nav>
         <ul class="account">
-                <li><a th:href="@{/login}"> Login </a></li>
-                <li><a th:href="@{/creatingAccount}"> Opret bruger </a></li>
+            <li><a th:href="@{/login}"> Login </a></li>
+            <li><a th:href="@{/creatingAccount}"> Opret bruger </a></li>
         </ul>
     </div>
 
-    <ul class="menu">
-        <li><a th:href="@{/ordre}"> Bestil </a></li>
-        <li><a th:href="@{/gallery}"> Galleri </a></li>
-        <a th:href="@{/basket}">
-            <img src="/images/kurv.png" class="fotoIkon">
-        </a>
-    </ul>
-
+    <nav class="navCenter">
+        <ul class="menu">
+            <li><a th:href="@{/ordre}"> Bestil </a></li>
+            <li><a th:href="@{/gallery}"> Galleri </a></li>
+            <a th:href="@{/basket}">
+                <img src="/images/kurv.png" class="fotoIkon">
+            </a>
+        </ul>
+    </nav>
 
     <nav class="navCenter">
         <div class="menuLine">
@@ -38,6 +40,27 @@
 
 
 <main>
+
+    <div class="login-container">
+
+        <h2>Login</h2>
+
+        <form th:action="@{/login}" method="post">
+
+            <div class="input-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password1">Kodeord:</label>
+                <input type="password" id="password1" name="password1" required>
+            </div>
+
+            <button type="submit">Login</button>
+
+        </form>
+    </div>
 
 
 </main>
