@@ -279,6 +279,20 @@ h1 {
 }
 
 
+/*____________________*/
+.infoTabel{
+
+}
+
+
+.input-group-admin{
+
+}
+
+
+/*_________button___________*/
+
+
 button {
     display: inline-block;
     padding: 10px 20px;
@@ -287,7 +301,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-family: "Baskerville Old Face";
+    font-family: "Indie Flower";
 }
 
 button:hover {
@@ -321,3 +335,21 @@ button:hover {
     height: clamp(10px, 20vw, 30px);
 }
 
+/*-----------Tabel---------------*/
+.tableWrapper {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    overflow-x: auto;
+}
+
+.tableStyle {
+    border-collapse: collapse;
+    margin: 40px 0;
+    width: 100%;
+
+    font-family: "Indie Flower";
+    font-weight: 500;
+    font-size: clamp(16px, 2vw, 22px);
+    color: black;
+}
