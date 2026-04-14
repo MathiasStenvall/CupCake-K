@@ -30,7 +30,7 @@ public class ClientController {
 
         app.post("/createAccount", ctx -> createClient(ctx));
         app.post("", ctx -> login(ctx));
-        app.post("j", ctx -> createCupCake(ctx));
+        app.post("l", ctx -> createCupCake(ctx));
         app.post("m", ctx -> setBasket(ctx));
     }
 
