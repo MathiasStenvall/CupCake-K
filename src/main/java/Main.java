@@ -8,7 +8,6 @@ import io.javalin.rendering.template.JavalinThymeleaf;
 import persistence.ConnectionPool;
 import persistence.CupcakeMapper;
 import persistence.OrderMapper;
-import persistence.UserMapper;
 
 
 public class Main {
