@@ -43,24 +43,5 @@ public class Main {
         OrderList orderList = new OrderList();
         orderMapper.getAllOrders(orderList);
 
-        /* test paying for basket - tested and WORKS!
-
-
-        Basket basket = new Basket(mathias,connectionPool);
-        Cupcake firstCupcake = new Cupcake(20, 3, "nutmeg", 2, "blueberry",10.00);
-        firstCupcake.setAmount(3);
-        Cupcake secondCupcake = new Cupcake(21, 3,"nutmeg",3,"rasberry",10.00);
-        secondCupcake.setAmount(2);
-
-        basket.addCupcakeToBasket(firstCupcake);
-        basket.addCupcakeToBasket(secondCupcake);
-
-        basket.payBasket();
-        */
-
-        /* testing getCupcakeId - tested and WORKS!
-        System.out.println(cupcakeList.getCupcakeList().size());
-        System.out.println(cupcakeList.findCupcakeID("pistacio","orange"));
-        */
     }
 }
