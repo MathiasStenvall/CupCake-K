@@ -17,8 +17,8 @@
                 </a>
             </div>
         </nav>
-        <div id="email">E-mail</div>
-        <ul class="admin_account">
+        <ul class="account">
+            <div id="email">E-mail</div>
             <li><a th:href="@{/adminsite}">Admin</a></li>
             <li><a th:href="@{/index}">Log Ud</a></li>
         </ul>
@@ -42,27 +42,28 @@
 </header>
 
 <main>
-    <h2>Kunde-oversigt</h2>
-    <div class="infoTabel">
-        <div class="input-group-admin">
-            <label for="customer_name">Navn:</label>
-            <input type="text" id="customer_name" name="customer_name">
+    <nav class="navCenter">
+        <h2>Kunde-oversigt</h2>
+        <div class="infoTabel">
+            <div class="input-group-admin">
+                <label for="customer_name">Navn:</label>
+                <input type="text" id="customer_name" name="customer_name">
 
-            <label for="customer_number">Kunde nr.:</label>
-            <input type="number" id="customer_number" name="customer_number">
+                <label for="customer_number">Kunde nr.:</label>
+                <input type="number" id="customer_number" name="customer_number">
 
+            </div>
+            <div class="input-group-admin">
+                <label for="customer_email">E-mail:</label>
+                <input type="email" id="customer_email" name="customer_email">
+                <p></p>
+                <form action="/viewuserinfo" method="get">
+                    <button type="submit">Søg</button>
+                </form>
+
+            </div>
         </div>
-        <div class="input-group-admin">
-            <label for="customer_email">E-mail:</label>
-            <input type="email" id="customer_email" name="customer_email">
-
-            <form action="/viewuserinfo" method="get">
-                <button type="submit">Søg</button>
-            </form>
-
-        </div>
-    </div>
-
+    </nav>
     <nav class="navCenter">
         <div class="tableWrapper">
             <table class="tableStyle">

@@ -53,7 +53,7 @@ h1 {
     font-size: clamp(24px, 4vw, 35px);
 }
 
-h2{
+h2 {
     font-family: "Indie Flower";
     font-weight: 400;
     font-size: clamp(20px, 4vw, 24px);
@@ -142,17 +142,16 @@ h2{
 /* ________________ padding __________________  */
 
 .top-nav {
-    padding-top: 2%;
+    padding-top: 1%;
 }
 
 .navCenter {
-    padding-top: 1%;
     text-align: center;
     margin: 0 auto;
 }
 
 /* ________________ Menu __________________  */
-.admin{
+.admin {
     text-align: center;
 }
 
@@ -168,7 +167,8 @@ h2{
     list-style: none;
     column-gap: 0;
 }
-.admin .menu{
+
+.admin .menu {
     position: relative;
     display: inline-grid;
     grid-template-columns: repeat(4, auto);
@@ -205,8 +205,6 @@ h2{
 }
 
 
-
-
 /*-----------Menu string-------------*/
 
 .menuLine {
@@ -221,7 +219,7 @@ h2{
 
 /* ________________ Footer/ info__________________  */
 
-.footer{
+.footer {
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -232,7 +230,7 @@ h2{
     position: relative;
 }
 
-.footerDesign{
+.footerDesign {
     position: relative;
     display: inline-grid;
     grid-template-columns: repeat(3, auto);
@@ -275,7 +273,6 @@ h2{
     height: 3px;
     background-color: #3C1072;
 }
-
 
 
 /*-----Log in box and create acc box ------ */
@@ -321,15 +318,40 @@ h2{
 }
 
 
-
 /*____________________*/
-.infoTabel{
-
+.infoTabel {
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+    margin: 0 auto;
+    list-style: none;
+    column-gap: 0;
 }
 
 
-.input-group-admin{
+.input-group-admin {
+    margin-bottom: 15px;
+    text-align: center;
+}
 
+.input-group-admin label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group-admin input,
+.input-group-admin select {
+    width: auto;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #3C1072;
+}
+
+.infoTabel button {
+    white-space: nowrap;
 }
 
 
@@ -362,12 +384,13 @@ button:hover {
     max-width: 58%;
     margin: 0 auto;
 }
+
 .item img {
-        width: auto;
-        height: 100%;
-        max-height: 180px;
-        object-fit: contain;
-        display: block;
+    width: auto;
+    height: 100%;
+    max-height: 180px;
+    object-fit: contain;
+    display: block;
 }
 
 .bigFoto {
@@ -428,9 +451,8 @@ button:hover {
 }
 
 
-
 /*-----------Input box---------------*/
-.containerBox{
+.containerBox {
     width: 300px;
     margin: 20px auto;
     padding: 20px;
