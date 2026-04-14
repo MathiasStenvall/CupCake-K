@@ -8,26 +8,27 @@
 <body>
 <header>
     <div class="header">
-        <div class="logoplace">
-            <a th:href="@{/index}">
-                <img src="/images/logoMuffin.png" class="logoSize">
-            </a>
-        </div>
-
+        <nav class="navCenter">
+            <div class="logoplace">
+                <a th:href="@{/index}">
+                    <img src="/images/logoMuffin.png" class="logoSize">
+                </a>
+            </div>
+        </nav>
         <ul class="account">
             <li><a th:href="@{/login}"> Login </a></li>
             <li><a th:href="@{/creatingAccount}"> Opret bruger </a></li>
         </ul>
     </div>
-
-    <ul class="menu">
-        <li><a th:href="@{/ordre}"> Bestil </a></li>
-        <li><a th:href="@{/gallery}"> Galleri </a></li>
-        <a th:href="@{/basket}">
-            <img src="/images/kurv.png" class="fotoIkon">
-        </a>
-    </ul>
-
+    <nav class="navCenter">
+        <ul class="menu">
+            <li><a th:href="@{/ordre}"> Bestil </a></li>
+            <li><a th:href="@{/gallery}"> Galleri </a></li>
+            <a th:href="@{/basket}">
+                <img src="/images/kurv.png" class="fotoIkon">
+            </a>
+        </ul>
+    </nav>
 
     <nav class="navCenter">
         <div class="menuLine">
