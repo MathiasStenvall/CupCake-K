@@ -58,6 +58,7 @@
             <artifactId>HikariCP</artifactId>
             <version>${hikari.version}</version>
         </dependency>
+
     </dependencies>
 
     <build>
