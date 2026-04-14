@@ -42,10 +42,10 @@
     <nav class="navCenter">
         <h2>Bestil</h2>
         <div class="containerBox">
-            <form th:action="@{/cupCakeLine}" method="post">
+            <form th:action="@{/createCupcake}" method="post">
                 <div class="input-group">
-                    <label class="form-label" for="selectbottun">CupCake bund</label>
-                    <select name="selectbottun" id="selectbottun" class="form-input">
+                    <label class="form-label" for="selectbottom">CupCake bund</label>
+                    <select name="selectbottom" id="selectbottom" class="form-input">
                         <option value="almond">Mandel</option>
                         <option value="chocolate">Chokolade</option>
                         <option value="nutmeg">Muskatnød</option>
@@ -55,8 +55,8 @@
                 </div>
 
                 <div class="input-group">
-                    <label class="form-label" for="selecttop">CupCake bund</label>
-                    <select name="selectbottun" id="selecttop" class="form-input">
+                    <label class="form-label" for="selecttop">CupCake topping</label>
+                    <select name="selecttop" id="selecttop" class="form-input">
                         <option value="orange">Appelsin</option>
                         <option value="blueberry">Blåbær</option>
                         <option value="blue cheese">Blåskimmel</option>
