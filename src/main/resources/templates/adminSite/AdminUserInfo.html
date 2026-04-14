@@ -43,16 +43,16 @@
     <h2>Kunde-oversigt</h2>
     <div class="infoTabel">
         <div class="input-group-admin">
-            <label for="costumername">Navn:</label>
-            <input type="text" id="costumername" name="costumername">
+            <label for="customer_name">Navn:</label>
+            <input type="text" id="customer_name" name="customer_name">
 
-            <label for="costumernumber">Kunde nr.:</label>
-            <input type="number" id="costumernumber" name="costumernuber">
+            <label for="customer_number">Kunde nr.:</label>
+            <input type="number" id="customer_number" name="customer_number">
 
         </div>
         <div class="input-group-admin">
-            <label for="costumeremail">E-mail:</label>
-            <input type="email" id="costumeremail" name="costumeremail">
+            <label for="customer_email">E-mail:</label>
+            <input type="email" id="customer_email" name="customer_email">
 
             <form action="/viewuserinfo" method="get">
                 <button type="submit">Søg</button>
@@ -73,11 +73,11 @@
                 </tr>
                 </thead>
                 <tbody class="bodyText">
-                <tr th:each="costemer : ${costumerList}">
-                    <td th:text="${costemer.kundenummer}"></td>
-                    <td th:text="${costemer.kundenavn}"></td>
-                    <td th:text="${costumer.kundeefternavn}"></td>
-                    <td th:text="${costumer.kundeemail}"></td>
+                <tr th:each="customer : ${customerList}">
+                    <td th:text="${customer.kunde_nummer}"></td>
+                    <td th:text="${customer.kunde_navn}"></td>
+                    <td th:text="${customer.kunde_efternavn}"></td>
+                    <td th:text="${customer.kunde_email}"></td>
                 <tbody>
 
             </table>

@@ -40,5 +40,43 @@
 
 </header>
 
+<h2>Tilføj-Saldo</h2>
+<div class="infoTabel">
+    <div class="input-group-admin">
+        <label for="customer_number">Kunde nr:</label>
+        <input type="text" id="customer_number" name="customer_number">
+
+        <form action="/viewusernumber" method="get">
+            <button type="submit">Søg kundenummer</button>
+        </form>
+
+    </div>
+</div>
+
+<nav class="navCenter">
+    <div class="tableWrapper">
+        <table class="tableStyle">
+            <thead>
+            <tr>
+                <th>Kunde nr.</th>
+                <th>Saldo</th>
+                <th>Tilføj saldo</th>
+            </tr>
+            </thead>
+            <tbody class="bodyText">
+            <tr th:each="customer : ${customerList}">
+                <td th:text="${customer.kunde_nummer}"></td>
+                <td th:text="${customer.kunde_saldo}"></td>
+                <td th:text="${customer.kunde_opdatert_saldo}"></td>
+            <tbody>
+
+        </table>
+    </div>
+</nav>
+
+<form action="/updateusersaldo" method="post">
+    <button type="submit">Tilføj Saldo</button>
+</form>
+
 </body>
 </html>
