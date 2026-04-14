@@ -49,7 +49,7 @@ public class Main {
         orderMapper.getAllOrders(orderList);
 
         /* test paying for basket - tested and WORKS!
-        Client mathias = new Client(2,"mathias","stenvall","client", "mstenvall@gmail.com", "1234", 2000);
+
 
         Basket basket = new Basket(mathias,connectionPool);
         Cupcake firstCupcake = new Cupcake(20, 3, "nutmeg", 2, "blueberry",10.00);
