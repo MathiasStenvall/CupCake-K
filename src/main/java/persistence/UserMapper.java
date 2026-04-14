@@ -65,12 +65,11 @@ public class UserMapper {
                 ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
 
-                if(rs.next()) {
+                if (rs.next()) {
                     int userID = rs.getInt(1);
                     return new Client(userID, firstname, lastname, "client", email, password1, 0.0);
                 }
-            }
-            else
+            } else
                 System.out.println("Adgangskode matcher ikke");
 
         } catch (SQLException e) {
@@ -79,23 +78,72 @@ public class UserMapper {
         return null;
     }
 
-    public void updateUserBalance(int userId, double balance){
+    public void updateUserBalance(int userId, double balance) {
         String sql = "UPDATE users SET balance = ? WHERE user_id =  ?";
+
+        try (Connection connection = cp.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setDouble(1, balance);
+            ps.setInt(2, userId);
+
+            int rows = ps.executeUpdate();
+
+            if (rows == 0) {
+                System.out.println("User id: " + userId + " was not found");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public User getCustomer(int id) {
+        String sql = "SELECT * FROM users WHERE user_id = ?";
+
+        try (Connection connection = cp.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)){
+
+            ps.setInt(1, id);
+
+            try (ResultSet rs = ps.executeQuery()) {
+
+                if (rs.next()) {
+                    int userId = rs.getInt("user_id");
+                    String firstName = rs.getString("first_name");
+                    String lastName = rs.getString("last_name");
+                    String role = rs.getString("role");
+                    String email = rs.getString("email");
+                    String password = rs.getString("password");
+                    double balance = rs.getDouble("balance");
+                    if ("admin".equals(role)) {
+                        return new Admin(userId, firstName, lastName, role, email, password, balance);
+                    } else if ("client".equals(role)) {
+                        return new Client(userId, firstName, lastName, role, email, password, balance);
+                    }
+                }
+            }
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    public boolean setBalance(double balance, int id){
+
+        String sql = "UPDATE users SET balance = ? WHERE user_id = ?";
 
         try (Connection connection = cp.getConnection();
         PreparedStatement ps = connection.prepareStatement(sql)){
 
             ps.setDouble(1, balance);
-            ps.setInt(2,userId);
+            ps.setInt(2, id);
 
-            int rows = ps.executeUpdate();
-
-            if (rows == 0){
-                System.out.println("User id: " + userId + " was not found");
-            }
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e){
             System.out.println(e.getMessage());
+            return false;
         }
     }
 
