@@ -18,11 +18,12 @@ body {
 .header {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     box-sizing: border-box;
     width: 100%;
     padding: 10px 2%;
+    position: relative;
 
 }
 
@@ -35,14 +36,13 @@ main {
 .logoplace {
     justify-content: center;
     display: flex;
-    align-self: center;
-    margin: 0;
+
 
 }
 
 .logoSize {
     width: clamp(160px, 23%, 260px);
-    heigth: auto;
+    height: auto;
 }
 
 /* ________________ text __________________  */
@@ -61,6 +61,7 @@ h2{
 
 
 .account {
+    position: absolute;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -69,6 +70,7 @@ h2{
     margin: 0;
     right: 10px;
     margin-left: auto;
+    top: 10px;
 }
 
 .account a {
