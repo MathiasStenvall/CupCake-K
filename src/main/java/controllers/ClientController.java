@@ -62,15 +62,20 @@ public class ClientController {
         String bottom = ctx.formParam("selectbottom");
         String top = ctx.formParam("selecttop");
 
-
         CupcakeMapper cupcakeMapper = new CupcakeMapper(connectionPool);
         CupcakeList cupcakeList = new CupcakeList();
 
         cupcakeMapper.generateCupcakes();
         cupcakeMapper.getAllCupcakes(cupcakeList);
 
+        for(int i = 0; i<=cupcakeList.getCupcakeList().size(); i++){
 
-        System.out.println(cupcakeList.getCupcakeList());
+            System.out.println(cupcakeList.getCupcakeList().get(i));
+
+
+        }
+
+
 
 
         ctx.render("Odrersite.html");
