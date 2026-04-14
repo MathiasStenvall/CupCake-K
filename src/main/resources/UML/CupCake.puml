@@ -194,6 +194,7 @@ AdminController ..> Client
 
 ClientController --> ConnectionPool
 ClientController --> Javalin
+ClientController --* UserMapper
 ClientController ..> User
 ClientController ..> Client
 ClientController ..> Cupcake

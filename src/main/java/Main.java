@@ -33,11 +33,6 @@ public class Main {
         clientController.addRoutes();
         adminCOntroller.addRoutes();
 
-        /*Test af login metoden */
-        UserMapper usermapper = new UserMapper(connectionPool);
-        System.out.println(usermapper.login("ckenter@gmail.com","1234").getRole());
-
-
         CupcakeMapper cupcakeMapper = new CupcakeMapper(connectionPool);
         cupcakeMapper.generateCupcakes();
 

@@ -39,7 +39,6 @@ public class UserMapper {
 
                 if (role.equals("admin")) {
                     return new Admin(userID, firstName, lastName, role, email, password, balance);
-
                 } else {
                     return new Client(userID, firstName, lastName, role, email, password, balance);
                 }
@@ -50,26 +49,34 @@ public class UserMapper {
         return null;
     }
 
-    public void createClieant(String firstname, String lastname, String email, String password1, String password2) {
+    public Client createClient(String firstname, String lastname, String email, String password1, String password2) {
         String createClient = "INSERT INTO users (first_name, last_name, role, email, password)" +
                 "VALUES (?, ?, 'client', ?, ?)";
 
         try (Connection connection = cp.getConnection();
-             PreparedStatement ps = connection.prepareStatement(createClient)) {
+             PreparedStatement ps = connection.prepareStatement(createClient, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, firstname);
             ps.setString(2, lastname);
             ps.setString(3, email);
             ps.setString(4, password1);
 
-            if (password1.equals(password2))
-                ps.executeQuery();
+            if (password1.equals(password2)) {
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+
+                if(rs.next()) {
+                    int userID = rs.getInt(1);
+                    return new Client(userID, firstname, lastname, "client", email, password1, 0.0);
+                }
+            }
             else
                 System.out.println("Adgangskode matcher ikke");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return null;
     }
 
     public void updateUserBalance(int userId, double balance){

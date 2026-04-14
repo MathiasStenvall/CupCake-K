@@ -1,5 +1,7 @@
 package controllers;
 
+import entities.Client;
+import entities.User;
 import io.javalin.Javalin;
 import persistence.ConnectionPool;
 import io.javalin.http.Context;
@@ -9,11 +11,13 @@ public class ClientController {
 
     Javalin app;
     ConnectionPool connectionPool;
-    UserMapper usermapper = new UserMapper(connectionPool);
+    UserMapper usermapper;
+
 
     public ClientController(Javalin app, ConnectionPool connectionPool) {
         this.app = app;
         this.connectionPool = connectionPool;
+        this.usermapper = new UserMapper(connectionPool);
     }
 
     public void addRoutes(){
@@ -29,7 +33,7 @@ public class ClientController {
         app.get("/about", ctx -> ctx.render("info/About.html"));
 
         app.post("/createAccount", ctx -> createClient(ctx));
-        app.post("", ctx -> login(ctx));
+        app.post("/login", ctx -> login(ctx));
         app.post("l", ctx -> createCupCake(ctx));
         app.post("m", ctx -> setBasket(ctx));
     }
@@ -38,8 +42,8 @@ public class ClientController {
         String email = ctx.formParam("email");
         String password = ctx.formParam("password");
 
-        usermapper.login(email,password);
-        ctx.render("Gallery.html");
+        User user = usermapper.login(email,password);
+        ctx.render("Index.html");
     }
 
     public void createClient(Context ctx){
@@ -49,7 +53,7 @@ public class ClientController {
         String password1 = ctx.formParam("password1");
         String password2 = ctx.formParam("password2");
 
-        usermapper.createClieant(firstname, lastname, email, password1, password2);
+        Client client = usermapper.createClient(firstname, lastname, email, password1, password2);
         ctx.render("Index.html");
     }
 
