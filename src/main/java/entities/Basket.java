@@ -35,6 +35,7 @@ public class Basket {
             basketUser.setBalance(basketUser.getBalance() - basketTotalPrice);
 
             orderMapper.uploadOrder(basketUser, basketCupcakes, basketTotalPrice);
+            
 
             basketTotalPrice = 0;
             basketCupcakes.clear();
