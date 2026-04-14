@@ -71,5 +71,26 @@ public class UserMapper {
             System.out.println(e.getMessage());
         }
     }
+
+    public void updateUserBalance(int userId, double balance){
+        String sql = "UPDATE users SET balance = ? WHERE user_id =  ?";
+
+        try (Connection connection = cp.getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql)){
+
+            ps.setDouble(1, balance);
+            ps.setInt(2,userId);
+
+            int rows = ps.executeUpdate();
+
+            if (rows == 0){
+                System.out.println("User id: " + userId + " was not found");
+            }
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
 
