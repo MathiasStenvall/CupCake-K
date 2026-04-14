@@ -1,10 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <title>Admin_User_Info</title>
 
+    <link rel="stylesheet" th:href="@{/css/Stylesheet.css}">
+</head>
+
+<body>
+<header>
+    <div class="header">
+        <nav class="navCenter">
+            <div class="logoplace">
+                <a th:href="@{/index}">
+                    <img src="/images/logoMuffin.png" class="logoSize" alt="">
+                </a>
+            </div>
+        </nav>
+        <div id="email">E-mail</div>
+        <ul class="admin_account">
+            <li><a th:href="@{/admin}">Admin</a></li>
+            <li><a th:href="@{/index}">Log Ud</a></li>
+        </ul>
+    </div>
+
+    <nav class="navCenter">
+        <ul class="menu">
+
+            <li><a th:href="@{/adminorders}">Ordre Oversigt</a></li>
+
+            <li><a th:href="@{/adminuserinfo}">Kunde Oversigt</a></li>
+
+            <li><a th:href="@{/adminsaldo}">Tilføj Saldo</a></li>
+
+            <li><a th:href="@{/admincreateadmin}">Opret Admin</a></li>
+
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <h2>Kunde-oversigt</h2>
+    <div class="infoTabel">
+        <div class="input-group-admin">
+            <label for="costumername">Navn:</label>
+            <input type="text" id="costumername" name="costumername">
+
+            <label for="costumernumber">Kunde nr.:</label>
+            <input type="number" id="costumernumber" name="costumernuber">
+
+        </div>
+        <div class="input-group-admin">
+            <label for="costumeremail">E-mail:</label>
+            <input type="email" id="costumeremail" name="costumeremail">
+
+            <form action="/viewuserinfo" method="get">
+                <button type="submit">Søg</button>
+            </form>
+
+        </div>
+    </div>
+
+    <nav class="navCenter">
+        <div class="tableWrapper">
+            <table class="tableStyle">
+                <thead>
+                <tr>
+                    <th>Kunde nr.</th>
+                    <th>Navn</th>
+                    <th>Efternavn</th>
+                    <th>E-mail</th>
+                </tr>
+                </thead>
+                <tbody class="bodyText">
+                <tr th:each="costemer : ${costumerList}">
+                    <td th:text="${costemer.kundenummer}"></td>
+                    <td th:text="${costemer.kundenavn}"></td>
+                    <td th:text="${costumer.kundeefternavn}"></td>
+                    <td th:text="${costumer.kundeemail}"></td>
+                <tbody>
+
+            </table>
+        </div>
+    </nav>
+
+</main>
 </body>
 </html>

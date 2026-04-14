@@ -8,26 +8,27 @@
 <body>
 <header>
     <div class="header">
-        <div class="logoplace">
-            <a th:href="@{/index}">
-                <img src="/images/logoMuffin.png" class="logoSize">
-            </a>
-        </div>
-
+        <nav class="navCenter">
+            <div class="logoplace">
+                <a th:href="@{/index}">
+                    <img src="/images/logoMuffin.png" class="logoSize">
+                </a>
+            </div>
+        </nav>
         <ul class="account">
-                <li><a th:href="@{/login}"> Login </a></li>
-                <li><a th:href="@{/creatingAccount}"> Opret bruger </a></li>
+            <li><a th:href="@{/login}"> Login </a></li>
+            <li><a th:href="@{/creatingAccount}"> Opret bruger </a></li>
         </ul>
     </div>
-
-    <ul class="menu">
-        <li><a th:href="@{/ordre}"> Bestil </a></li>
-        <li><a th:href="@{/gallery}"> Galleri </a></li>
-        <a th:href="@{/basket}">
-            <img src="/images/kurv.png" class="fotoIkon">
-        </a>
-    </ul>
-
+    <nav class="navCenter">
+        <ul class="menu">
+            <li><a th:href="@{/ordre}"> Bestil </a></li>
+            <li><a th:href="@{/gallery}"> Galleri </a></li>
+            <a th:href="@{/basket}">
+                <img src="/images/kurv.png" class="fotoIkon">
+            </a>
+        </ul>
+    </nav>
 
     <nav class="navCenter">
         <div class="menuLine">
@@ -38,6 +39,54 @@
 
 
 <main>
+
+    <nav class="navCenter">
+        <div class="basket">
+            <div class="tableWrapper">
+                <table class="tableStyle">
+                    <thead class="bodyText">
+                    <tr>
+                        <th>Cupcake</th>
+                        <th>Stk. Pris</th>
+                        <th>Anatal</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody class="bodyText">
+
+                    <tr th:each="basket : ${basketList}">
+                        <td th:text="${basket.cupcake}"></td>
+                        <td th:text="${basket.price}"></td>
+                        <td th:text="${basket.amount}"></td>
+                        <td class="action">
+                            <form method="post" action="edit">
+                                <button class="fotoIkon">
+                                    <img src="/images/blyant.png" alt="Rededit">
+                                </button>
+                            </form>
+                        </td>
+                        <td class="action">
+                            <form method="post" action="delete">
+                                <button class="fotoIkon">
+                                    <img src="/images/x.png">
+                                </button>
+                            </form>
+                        </td>
+
+                    <tfoot>
+                    <tr>
+                        <td>Total pris</td>
+                        <td>Kr.</td>
+                    </tr>
+                    </tfoot>
+
+
+                    <tbody>
+
+                </table>
+            </div>
+        </div>
+    </nav>
 
 
 </main>

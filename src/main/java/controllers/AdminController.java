@@ -16,8 +16,8 @@ public class AdminController {
     }
 
     public void addRoutes(){
-        app.get("a", ctx -> ctx.render(""));
-        app.get("b", ctx -> ctx.render(""));
+        app.get("/adminsite", ctx -> ctx.render("adminSite/Admin.html"));
+        app.get("/adminuserinfo", ctx -> ctx.render("adminSite/AdminUserInfo.html"));
         app.get("c", ctx -> ctx.render(""));
         app.get("d", ctx -> ctx.render(""));
         app.get("e", ctx -> ctx.render(""));

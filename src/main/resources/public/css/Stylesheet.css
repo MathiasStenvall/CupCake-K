@@ -18,11 +18,12 @@ body {
 .header {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     box-sizing: border-box;
     width: 100%;
     padding: 10px 2%;
+    position: relative;
 
 }
 
@@ -35,14 +36,13 @@ main {
 .logoplace {
     justify-content: center;
     display: flex;
-    align-self: center;
-    margin: 0;
+
 
 }
 
 .logoSize {
     width: clamp(160px, 23%, 260px);
-    heigth: auto;
+    height: auto;
 }
 
 /* ________________ text __________________  */
@@ -53,7 +53,15 @@ h1 {
     font-size: clamp(24px, 4vw, 35px);
 }
 
+h2{
+    font-family: "Indie Flower";
+    font-weight: 400;
+    font-size: clamp(20px, 4vw, 24px);
+}
+
+
 .account {
+    position: absolute;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -62,6 +70,7 @@ h1 {
     margin: 0;
     right: 10px;
     margin-left: auto;
+    top: 10px;
 }
 
 .account a {
@@ -143,6 +152,9 @@ h1 {
 }
 
 /* ________________ Menu __________________  */
+.admin{
+    text-align: center;
+}
 
 .menu {
     position: relative;
@@ -156,6 +168,11 @@ h1 {
     list-style: none;
     column-gap: 0;
 }
+.admin .menu{
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: repeat(4, auto);
+}
 
 .menu li {
     text-align: center;
@@ -166,7 +183,7 @@ h1 {
     color: black;
     font-family: "Indie Flower";
     font-weight: 500;
-    font-size: clamp(16px, 2vw, 25px);
+    font-size: clamp(16px, 2vw, 22px);
     white-space: nowrap;
 }
 
@@ -186,6 +203,8 @@ h1 {
     background-color: #3C1072;
 
 }
+
+
 
 
 /*-----------Menu string-------------*/
@@ -244,7 +263,7 @@ h1 {
 /*-----Log in box and create acc box ------ */
 .login-container {
     width: 300px;
-    margin: 100px auto;
+    margin: 20px auto;
     padding: 20px;
     background-color: #FFFFFF;
     border-radius: 10px;
@@ -279,6 +298,20 @@ h1 {
 }
 
 
+/*____________________*/
+.infoTabel{
+
+}
+
+
+.input-group-admin{
+
+}
+
+
+/*_________button___________*/
+
+
 button {
     display: inline-block;
     padding: 10px 20px;
@@ -287,7 +320,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-family: "Baskerville Old Face";
+    font-family: "Indie Flower";
 }
 
 button:hover {
@@ -321,3 +354,65 @@ button:hover {
     height: clamp(10px, 20vw, 30px);
 }
 
+/*-----------Tabel---------------*/
+.tableWrapper {
+    width: 70%;
+    max-width: 1100px;
+    margin: auto;
+    overflow-x: auto;
+}
+
+.tableStyle {
+    border-collapse: collapse;
+    margin: 40px 0;
+    width: 100%;
+
+    font-family: "Indie Flower";
+    font-weight: 500;
+    font-size: clamp(16px, 2vw, 22px);
+    color: black;
+}
+
+
+/*-----------Tabel basket---------------*/
+
+.basket .tableStyle th {
+    background-color: #8572FB;
+    color: black;
+    padding: 10px;
+    text-align: left;
+}
+
+.basket .tableStyle td {
+    padding: 10px;
+}
+
+.basket .tableStyle tbody tr:nth-child(odd) {
+    background-color: #D7D2FF;
+}
+
+.-basket .tableStyle tbody tr:nth-child(even) {
+    background-color: #EDEBFF;
+}
+
+
+
+/*-----------Input box---------------*/
+.containerBox{
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    text-align: center;
+    stroke: #3C1072;
+}
+
+.containerBox h2 {
+    margin-bottom: 20px;
+}
+
+.containerBox button {
+    width: 100%;
+    padding: 10px 0;
+}

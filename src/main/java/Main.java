@@ -31,6 +31,7 @@ public class Main {
         AdminController adminCOntroller = new AdminController(app, connectionPool);
         ClientController clientController = new ClientController(app, connectionPool);
         clientController.addRoutes();
+        adminCOntroller.addRoutes();
 
         /*Test af login metoden */
         UserMapper usermapper = new UserMapper(connectionPool);
