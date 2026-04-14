@@ -1,10 +1,13 @@
 package controllers;
 
 import entities.Client;
+import entities.Cupcake;
+import entities.CupcakeList;
 import entities.User;
 import io.javalin.Javalin;
 import persistence.ConnectionPool;
 import io.javalin.http.Context;
+import persistence.CupcakeMapper;
 import persistence.UserMapper;
 
 public class ClientController {
@@ -12,7 +15,6 @@ public class ClientController {
     Javalin app;
     ConnectionPool connectionPool;
     UserMapper usermapper;
-
 
     public ClientController(Javalin app, ConnectionPool connectionPool) {
         this.app = app;
@@ -33,7 +35,7 @@ public class ClientController {
 
         app.post("/createAccount", ctx -> createClient(ctx));
         app.post("/login", ctx -> login(ctx));
-        app.post("l", ctx -> createCupCake(ctx));
+        app.post("/createCupcake", ctx -> createCupCake(ctx));
         app.post("m", ctx -> setBasket(ctx));
     }
 
@@ -57,12 +59,25 @@ public class ClientController {
     }
 
     public void createCupCake(Context ctx){
-        ctx.render("");
+        String bottom = ctx.formParam("selectbottom");
+        String top = ctx.formParam("selecttop");
+
+
+        CupcakeMapper cupcakeMapper = new CupcakeMapper(connectionPool);
+        CupcakeList cupcakeList = new CupcakeList();
+
+        cupcakeMapper.generateCupcakes();
+        cupcakeMapper.getAllCupcakes(cupcakeList);
+
+
+        System.out.println(cupcakeList.getCupcakeList());
+
+
+        ctx.render("Odrersite.html");
     }
 
     public void setBasket(Context ctx){
         ctx.render("");
     }
-
 
 }

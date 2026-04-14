@@ -32,12 +32,6 @@ public class Main {
         clientController.addRoutes();
         adminCOntroller.addRoutes();
 
-        CupcakeMapper cupcakeMapper = new CupcakeMapper(connectionPool);
-        cupcakeMapper.generateCupcakes();
-
-        CupcakeList cupcakeList = new CupcakeList();
-        cupcakeMapper.getAllCupcakes(cupcakeList);
-
         OrderMapper orderMapper = new OrderMapper(connectionPool);
         OrderList orderList = new OrderList();
         orderMapper.getAllOrders(orderList);

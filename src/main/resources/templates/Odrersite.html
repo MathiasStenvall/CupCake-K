@@ -21,13 +21,13 @@
         </ul>
     </div>
     <nav class="navCenter">
-        <ul class="menu">
-            <li><a th:href="@{/ordre}"> Bestil </a></li>
-            <li><a th:href="@{/gallery}"> Galleri </a></li>
-            <a th:href="@{/basket}">
-                <img src="/images/kurv.png" class="fotoIkon">
-            </a>
-        </ul>
+    <ul class="menu">
+        <li><a th:href="@{/ordre}"> Bestil </a></li>
+        <li><a th:href="@{/gallery}"> Galleri </a></li>
+        <a th:href="@{/basket}">
+            <img src="/images/kurv.png" class="fotoIkon">
+        </a>
+    </ul>
     </nav>
 
     <nav class="navCenter">
@@ -43,10 +43,10 @@
         <h2>Bestil</h2>
         <div class="containerBox">
             <div class="navCenter">
-                <form th:action="@{/cupCakeLine}" method="post">
+                <form th:action="@{/createCupcake}" method="post">
                     <div class="input-group">
-                        <label class="form-label" for="selectbottun">CupCake bund</label>
-                        <select name="selectbottun" id="selectbottun" class="form-input">
+                        <label class="form-label" for="selectbottom">CupCake bund</label>
+                        <select name="selectbottom" id="selectbottom" class="form-input">
                             <option value="almond">Mandel</option>
                             <option value="chocolate">Chokolade</option>
                             <option value="nutmeg">Muskatnød</option>
@@ -56,8 +56,8 @@
                     </div>
 
                     <div class="input-group">
-                        <label class="form-label" for="selecttop">CupCake bund</label>
-                        <select name="selectbottun" id="selecttop" class="form-input">
+                        <label class="form-label" for="selecttop">CupCake topping</label>
+                        <select name="selecttop" id="selecttop" class="form-input">
                             <option value="orange">Appelsin</option>
                             <option value="blueberry">Blåbær</option>
                             <option value="blue cheese">Blåskimmel</option>
@@ -71,19 +71,19 @@
                         </select>
                     </div>
 
-                    <div class="input-group">
-                        <label for="amount">Antal:</label>
-                        <input type="number" id="amount" name="amount" required>
-                    </div>
+                <div class="input-group">
+                    <label for="amount">Antal:</label>
+                    <input type="number" id="amount" name="amount" required>
+                </div>
 
-                    <div>
-                        <h2>Pris pr.stk: </h2>
-                        <!-- <data value="price"></data> -->
-                    </div>
+                <div>
+                    <h2>Pris pr.stk: </h2>
+                    <!-- <data value="price"></data> -->
+                </div>
 
-                    <div>
-                        <button type="submit">Bestil</button>
-                    </div>
+                <div>
+                    <button type="submit">Bestil</button>
+                </div>
 
                 </form>
             </div>
