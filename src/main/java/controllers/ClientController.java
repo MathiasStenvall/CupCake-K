@@ -30,7 +30,6 @@ public class ClientController {
         app.get("/location", ctx -> ctx.render("info/Location.html"));
         app.get("/contact", ctx -> ctx.render("info/Contact.html"));
         app.get("/about", ctx -> ctx.render("info/About.html"));
-        app.get("/about", ctx -> ctx.render("info/About.html"));
 
         app.post("/createAccount", ctx -> createClient(ctx));
         app.post("/login", ctx -> login(ctx));
