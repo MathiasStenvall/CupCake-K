@@ -1,5 +1,6 @@
 package persistence;
 
+import entities.CupcakeList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,6 +55,9 @@ class CupcakeMapperTest {
                     stmt.execute("CREATE TABLE test.toppings AS (SELECT * from public.toppings) WITH NO DATA");
                     stmt.execute("CREATE TABLE test.users AS (SELECT * from public.users) WITH NO DATA");
 
+                    //Add constraint to cupcakes table
+                    stmt.execute("ALTER TABLE test.cupcakes ADD CONSTRAINT unique_combo UNIQUE (topping_id, base_id)");
+
                     // Create sequences for auto generating id's
                     stmt.execute("CREATE SEQUENCE test.bases_base_id_seq");
                     stmt.execute("ALTER TABLE test.bases ALTER COLUMN base_id SET DEFAULT nextval('test.bases_base_id_seq')");
@@ -103,7 +107,7 @@ class CupcakeMapperTest {
                         "(2, 'vanilla', 5.00), " +
                         "(3, 'nutmeg', 5.00), " +
                         "(4, 'pistacio', 6.00), " +
-                        "(5, 'almond', 7.00),");
+                        "(5, 'almond', 7.00)");
 
                 // Insert test data into toppings-tabel
                 stmt.execute("INSERT INTO test.toppings (topping_id, name, price) VALUES " +
@@ -116,7 +120,7 @@ class CupcakeMapperTest {
                         "(7, 'orange', 8.00), " +
                         "(8, 'lemon', 8.00), " +
                         "(9, 'blue cheese', 9.00), " +
-                        "(10, 'plain', 0), ");
+                        "(10, 'plain', 0) ");
 
                 // More sequence object stuff
                 stmt.execute("SELECT setval('test.bases_base_id_seq', COALESCE((SELECT MAX(base_id) FROM test.bases)+1, 1), false)");
@@ -131,11 +135,19 @@ class CupcakeMapperTest {
         }
     }
 
+    // generateCupcakes and getAllCupcakes are tested the exact same way, and are tested at once.
     @Test
     void generateCupcakes() {
-    }
 
-    @Test
-    void getAllCupcakes() {
+        cupcakeMapper.generateCupcakes();
+
+        CupcakeList cupcakeList= new CupcakeList();
+        cupcakeMapper.getAllCupcakes(cupcakeList);
+
+        int expected = 50;
+        int actual = cupcakeList.getCupcakeList().size();
+
+        assertEquals(expected, actual);
+
     }
 }

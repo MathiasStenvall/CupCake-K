@@ -1,11 +1,16 @@
 package persistence;
 
+import entities.Client;
+import entities.Cupcake;
+import entities.OrderList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,10 +30,8 @@ class OrderMapperTest {
             connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
             // dependency injection
             orderMapper = new OrderMapper(connectionPool);
-            try (Connection testConnection = connectionPool.getConnection())
-            {
-                try (Statement stmt = testConnection.createStatement())
-                {
+            try (Connection testConnection = connectionPool.getConnection()) {
+                try (Statement stmt = testConnection.createStatement()) {
                     // The test schema is already created, so we only need to delete/create test tables
                     stmt.execute("DROP TABLE IF EXISTS test.bases CASCADE");
                     stmt.execute("DROP TABLE IF EXISTS test.cupcakes CASCADE");
@@ -69,8 +72,7 @@ class OrderMapperTest {
 
                 }
             }
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
             fail("Database connection failed");
         }
@@ -103,7 +105,7 @@ class OrderMapperTest {
                         "(2, 'mathias', 'stenvall', 'client', 'mstenvall@gmail.com', '1234', 2000)");
 
                 // Insert test data into orders-tabel
-                stmt.execute("INSERT INTO orders.team (order_id, user_id, date, price, paid) VALUES " +
+                stmt.execute("INSERT INTO test.orders (order_id, user_id, date, price, paid) VALUES " +
                         "(1, 1, '2026-04-14', 40.00, true), " +
                         "(2, 2, '2026-04-14', 60.00, true)");
 
@@ -122,9 +124,42 @@ class OrderMapperTest {
 
     @org.junit.jupiter.api.Test
     void getAllOrders() {
+
+        OrderList orderList = new OrderList();
+        orderMapper.getAllOrders(orderList);
+
+        int expected = 2;
+        int actual = orderList.getOrderList().size();
+
+        assertEquals(expected, actual);
+
     }
 
     @org.junit.jupiter.api.Test
     void uploadOrder() {
+
+        Client mathias = new Client(2,"mathias","stenvall","client", "mstenvall@gmail.com", "1234", 2000);
+
+        Cupcake firstCupcake = new Cupcake(20, 3, "nutmeg", 2, "blueberry",10.00);
+        firstCupcake.setAmount(3);
+        Cupcake secondCupcake = new Cupcake(21, 3,"nutmeg",3,"rasberry",10.00);
+        secondCupcake.setAmount(2);
+
+        List<Cupcake> cupcakeList = new ArrayList<>();
+        cupcakeList.add(firstCupcake);
+        cupcakeList.add(secondCupcake);
+
+        double price = 50.00;
+
+        orderMapper.uploadOrder(mathias, cupcakeList, price);
+
+        OrderList orderList = new OrderList();
+        orderMapper.getAllOrders(orderList);
+
+        int expected = 3;
+        int actual = orderList.getOrderList().size();
+
+        assertEquals(expected,actual);
+
     }
 }
