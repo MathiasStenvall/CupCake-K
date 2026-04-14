@@ -11,7 +11,7 @@
         <nav class="navCenter">
             <div class="logoplace">
                 <a th:href="@{/index}">
-                    <img src="/images/logoMuffin.png" class="logoSize">
+                    <img src="/images/logoMuffin.png" class="logoSize" alt="">
                 </a>
             </div>
         </nav>
@@ -25,7 +25,7 @@
             <li><a th:href="@{/ordre}"> Bestil </a></li>
             <li><a th:href="@{/gallery}"> Galleri </a></li>
             <a th:href="@{/basket}">
-                <img src="/images/kurv.png" class="fotoIkon">
+                <img src="/images/kurv.png" class="fotoIkon" alt="">
             </a>
         </ul>
     </nav>
@@ -40,6 +40,32 @@
 
 <main>
 
+    <nav class="navCenter">
+        <h2>Profil Oplysninger</h2>
+        <div class="containerBox">
+            <form th:action="@{/clientInfo}" method="get">
+                <section class="profile-card">
+                    <div class="profile-card-field">
+                        <p class="profile-card-label">Fornavn:</p>
+                        <p class="profile-card-value" th:text="${client.fornavn}"></p>
+                    </div>
+                    <div class="profile-card-field">
+                        <p class="profile-card-label">Efternavn:</p>
+                        <p class="profile-card-value" th:text="${client.efternavn}"></p>
+                    </div>
+                    <div class="profile-card-field">
+                        <p class="profile-card-label">E-mail:</p>
+                        <p class="profile-card-value" th:text="${client.email}"></p>
+                    </div>
+                    <div class="profile-card-field">
+                        <p class="profile-card-label">Saldo:</p>
+                        <p class="profile-card-value" th:text="${client.saldo}"></p>
+                    </div>
+                </section>
+            </form>
+        </div>
+
+    </nav>
 
 </main>
 
