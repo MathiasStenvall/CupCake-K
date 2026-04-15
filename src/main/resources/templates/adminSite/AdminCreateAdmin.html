@@ -17,28 +17,69 @@
                 </a>
             </div>
         </nav>
-        <div id="email">E-mail</div>
-        <ul class="admin_account">
+        <ul class="account">
+            <div id="email">E-mail</div>
             <li><a th:href="@{/adminsite}">Admin</a></li>
             <li><a th:href="@{/index}">Log Ud</a></li>
         </ul>
     </div>
 
     <nav class="navCenter">
-        <ul class="menu">
+        <div class="admin">
+            <ul class="menu">
 
-            <li><a th:href="@{/adminorders}">Ordre Oversigt</a></li>
+                <li><a th:href="@{/adminorders}">Ordre Oversigt</a></li>
 
-            <li><a th:href="@{/adminuserinfo}">Kunde Oversigt</a></li>
+                <li><a th:href="@{/adminuserinfo}">Kunde Oversigt</a></li>
 
-            <li><a th:href="@{/adminsaldo}">Tilføj Saldo</a></li>
+                <li><a th:href="@{/adminsaldo}">Tilføj Saldo</a></li>
 
-            <li><a th:href="@{/admincreateadmin}">Opret Admin</a></li>
+                <li><a th:href="@{/admincreateadmin}">Opret Admin</a></li>
 
-        </ul>
+            </ul>
+        </div>
     </nav>
 
 </header>
+<div class="login-container">
+
+    <h2>Opret Administrator</h2>
+
+    <form th:action="@{/createAdmin}" method="post">
+
+        <div class="input-group">
+            <label for="admin_firstname">Fornavn:</label>
+            <input type="text" id="admin_firstname" name="firstname" required>
+        </div>
+
+        <div class="input-group">
+            <label for="admin_lastname">Efternavn:</label>
+            <input type="text" id="admin_lastname" name="lastname" required>
+        </div>
+
+        <div class="input-group">
+            <label for="admin_email">E-mail:</label>
+            <input type="email" id="admin_email" name="mail" required>
+        </div>
+
+        <div class="input-group">
+            <label for="admin_password1">Kodeord:</label>
+            <input type="password" id="admin_password1" name="admin_password1" required>
+        </div>
+
+        <div class="input-group">
+            <label for="admin_password2">Gentag kodeord:</label>
+            <input type="password" id="admin_password2" name="admin_password2" required>
+        </div>
+
+        <button type="submit">Opret</button>
+
+    </form>
+</div>
+
+</main>
+
+
 
 </body>
 </html>

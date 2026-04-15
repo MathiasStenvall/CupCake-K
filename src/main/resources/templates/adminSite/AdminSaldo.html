@@ -17,66 +17,71 @@
                 </a>
             </div>
         </nav>
-        <div id="email">E-mail</div>
-        <ul class="admin_account">
+
+        <ul class="account">
+            <div id="email">E-mail</div>
             <li><a th:href="@{/adminsite}">Admin</a></li>
             <li><a th:href="@{/index}">Log Ud</a></li>
         </ul>
     </div>
 
     <nav class="navCenter">
-        <ul class="menu">
+        <div class="admin">
+            <ul class="menu">
 
-            <li><a th:href="@{/adminorders}">Ordre Oversigt</a></li>
+                <li><a th:href="@{/adminorders}">Ordre Oversigt</a></li>
 
-            <li><a th:href="@{/adminuserinfo}">Kunde Oversigt</a></li>
+                <li><a th:href="@{/adminuserinfo}">Kunde Oversigt</a></li>
 
-            <li><a th:href="@{/adminsaldo}">Tilføj Saldo</a></li>
+                <li><a th:href="@{/adminsaldo}">Tilføj Saldo</a></li>
 
-            <li><a th:href="@{/admincreateadmin}">Opret Admin</a></li>
+                <li><a th:href="@{/admincreateadmin}">Opret Admin</a></li>
 
-        </ul>
+            </ul>
+        </div>
     </nav>
 
 </header>
+<main>
+    <nav class="navCenter">
+        <h2>Tilføj-Saldo</h2>
+        <div class="infoTabel">
+            <div class="input-group-admin">
+                <label for="customer_number">Kunde nr:</label>
+                <input type="text" id="customer_number" name="customer_number">
+            </div>
+            <div class="infoTabel">
+                <form action="/viewusernumber" method="get">
+                    <button type="submit">Søg kundenummer</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <nav class="navCenter">
+        <div class="tableWrapper">
+            <table class="tableStyle">
+                <thead>
+                <tr>
+                    <th>Kunde nr.</th>
+                    <th>Saldo</th>
+                    <th>Tilføj saldo</th>
+                </tr>
+                </thead>
+                <tbody class="bodyText">
+                <tr th:each="customer : ${customerList}">
+                    <td th:text="${customer.kunde_nummer}"></td>
+                    <td th:text="${customer.kunde_saldo}"></td>
+                    <td th:text="${customer.kunde_opdatert_saldo}"></td>
+                <tbody>
 
-<h2>Tilføj-Saldo</h2>
-<div class="infoTabel">
-    <div class="input-group-admin">
-        <label for="customer_number">Kunde nr:</label>
-        <input type="text" id="customer_number" name="customer_number">
-
-        <form action="/viewusernumber" method="get">
-            <button type="submit">Søg kundenummer</button>
+            </table>
+        </div>
+    </nav>
+    <nav class="navCenter">
+        <form action="/updateusersaldo" method="post">
+            <button type="submit">Tilføj Saldo</button>
         </form>
-
-    </div>
-</div>
-
-<nav class="navCenter">
-    <div class="tableWrapper">
-        <table class="tableStyle">
-            <thead>
-            <tr>
-                <th>Kunde nr.</th>
-                <th>Saldo</th>
-                <th>Tilføj saldo</th>
-            </tr>
-            </thead>
-            <tbody class="bodyText">
-            <tr th:each="customer : ${customerList}">
-                <td th:text="${customer.kunde_nummer}"></td>
-                <td th:text="${customer.kunde_saldo}"></td>
-                <td th:text="${customer.kunde_opdatert_saldo}"></td>
-            <tbody>
-
-        </table>
-    </div>
-</nav>
-
-<form action="/updateusersaldo" method="post">
-    <button type="submit">Tilføj Saldo</button>
-</form>
-
+    </nav>
+</main>
 </body>
 </html>

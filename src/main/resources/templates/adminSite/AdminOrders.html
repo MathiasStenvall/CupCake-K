@@ -17,72 +17,76 @@
                 </a>
             </div>
         </nav>
-        <div id="email">E-mail</div>
-        <ul class="admin_account">
+
+        <ul class="account">
+            <div id="email">E-mail</div>
             <li><a th:href="@{/adminsite}">Admin</a></li>
             <li><a th:href="@{/index}">Log Ud</a></li>
         </ul>
     </div>
 
     <nav class="navCenter">
-        <ul class="menu">
+        <div class="admin">
+            <ul class="menu">
 
-            <li><a th:href="@{/adminorders}">Ordre Oversigt</a></li>
+                <li><a th:href="@{/adminorders}">Ordre Oversigt</a></li>
 
-            <li><a th:href="@{/adminuserinfo}">Kunde Oversigt</a></li>
+                <li><a th:href="@{/adminuserinfo}">Kunde Oversigt</a></li>
 
-            <li><a th:href="@{/adminsaldo}">Tilføj Saldo</a></li>
+                <li><a th:href="@{/adminsaldo}">Tilføj Saldo</a></li>
 
-            <li><a th:href="@{/adminscreateadmin}">Opret Admin</a></li>
+                <li><a th:href="@{/adminscreateadmin}">Opret Admin</a></li>
 
-        </ul>
+            </ul>
+        </div>
     </nav>
 
 </header>
+<main>
+    <nav class="navCenter">
+        <h2>Ordre-Oversigt</h2>
+        <div class="infoTabel">
+            <div class="input-group-admin">
+                <label for="ordre_date">Dato:</label>
+                <input type="text" id="ordre_date" name="ordre_date">
 
-<h2>Ordre-Oversigt</h2>
-<div class="infoTabel">
-    <div class="input-group-admin">
-        <label for="ordre_date">Dato:</label>
-        <input type="text" id="ordre_date" name="ordre_date">
+                <label for="customer_number">Kunde nr.:</label>
+                <input type="number" id="customer_number" name="customer_number">
 
-        <label for="customer_number">Kunde nr.:</label>
-        <input type="number" id="customer_number" name="customer_number">
+            </div>
+            <div class="input-group-admin">
+                <label for="ordre_number">Ordre nr:</label>
+                <input type="number" id="ordre_number" name="ordre_number">
+                <p></p>
+                <form action="/vieworderinfo" method="get">
+                    <button type="submit">Søg</button>
+                </form>
+            </div>
+        </div>
+    </nav>
 
-    </div>
-    <div class="input-group-admin">
-        <label for="ordre_number">Ordre nr:</label>
-        <input type="number" id="ordre_number" name="ordre_number">
+    <nav class="navCenter">
+        <div class="tableWrapper">
+            <table class="tableStyle">
+                <thead>
+                <tr>
+                    <th>Ordre nr.</th>
+                    <th>Kunde nr.</th>
+                    <th>Status</th>
+                    <th>Rediger</th>
+                </tr>
+                </thead>
+                <tbody class="bodyText">
+                <tr th:each="ordre : ${ordreList}">
+                    <td th:text="${ordre.ordre_nummer}"></td>
+                    <td th:text="${ordre.kunde_nummer}"></td>
+                    <td th:text="${ordre.ordre_status}"></td>
+                    <td th:text="${ordre.ordre_rediger}"></td>
+                <tbody>
 
-        <form action="/vieworderinfo" method="get">
-            <button type="submit">Søg</button>
-        </form>
-
-    </div>
-</div>
-
-<nav class="navCenter">
-    <div class="tableWrapper">
-        <table class="tableStyle">
-            <thead>
-            <tr>
-                <th>Ordre nr.</th>
-                <th>Kunde nr.</th>
-                <th>Status</th>
-                <th>Rediger</th>
-            </tr>
-            </thead>
-            <tbody class="bodyText">
-            <tr th:each="ordre : ${ordreList}">
-                <td th:text="${ordre.ordre_nummer}"></td>
-                <td th:text="${ordre.kunde_nummer}"></td>
-                <td th:text="${ordre.ordre_status}"></td>
-                <td th:text="${ordre.ordre_rediger}"></td>
-            <tbody>
-
-        </table>
-    </div>
-</nav>
-
+            </table>
+        </div>
+    </nav>
+</main>
 </body>
 </html>
