@@ -68,6 +68,7 @@ public class ClientController {
         CupcakeMapper cupcakeMapper = new CupcakeMapper(connectionPool);
         CupcakeList cupcakeList = new CupcakeList();
 
+        cupcakeMapper.generateCupcakes();
         cupcakeMapper.getAllCupcakes(cupcakeList);
 
         for(Cupcake cupcake: cupcakeList.getCupcakeList()){
