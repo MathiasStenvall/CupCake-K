@@ -36,7 +36,5 @@ public class Main {
         OrderList orderList = new OrderList();
         orderMapper.getAllOrders(orderList);
 
-
-
     }
 }
