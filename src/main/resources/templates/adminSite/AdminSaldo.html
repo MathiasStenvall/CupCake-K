@@ -58,23 +58,25 @@
         </div>
     </nav>
     <nav class="navCenter">
-        <div class="tableWrapper">
-            <table class="tableStyle">
-                <thead>
-                <tr>
-                    <th>Kunde nr.</th>
-                    <th>Saldo</th>
-                    <th>Tilføj saldo</th>
-                </tr>
-                </thead>
-                <tbody class="bodyText">
-                <tr th:each="customer : ${customerList}">
-                    <td th:text="${customer.kunde_nummer}"></td>
-                    <td th:text="${customer.kunde_saldo}"></td>
-                    <td th:text="${customer.kunde_opdatert_saldo}"></td>
-                <tbody>
+        <div class="adminTabel">
+            <div class="tableWrapper">
+                <table class="tableStyle">
+                    <thead>
+                    <tr>
+                        <th>Kunde nr.</th>
+                        <th>Saldo</th>
+                        <th>Tilføj saldo</th>
+                    </tr>
+                    </thead>
+                    <tbody class="bodyText">
+                    <tr th:each="customer : ${customerList}">
+                        <td th:text="${customer.kunde_nummer}"></td>
+                        <td th:text="${customer.kunde_saldo}"></td>
+                        <td th:text="${customer.kunde_opdatert_saldo}"></td>
+                    <tbody>
 
-            </table>
+                </table>
+            </div>
         </div>
     </nav>
     <nav class="navCenter">

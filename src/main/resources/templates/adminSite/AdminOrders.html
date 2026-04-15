@@ -66,25 +66,27 @@
     </nav>
 
     <nav class="navCenter">
-        <div class="tableWrapper">
-            <table class="tableStyle">
-                <thead>
-                <tr>
-                    <th>Ordre nr.</th>
-                    <th>Kunde nr.</th>
-                    <th>Status</th>
-                    <th>Rediger</th>
-                </tr>
-                </thead>
-                <tbody class="bodyText">
-                <tr th:each="ordre : ${ordreList}">
-                    <td th:text="${ordre.ordre_nummer}"></td>
-                    <td th:text="${ordre.kunde_nummer}"></td>
-                    <td th:text="${ordre.ordre_status}"></td>
-                    <td th:text="${ordre.ordre_rediger}"></td>
-                <tbody>
+        <div class="adminTabel">
+            <div class="tableWrapper">
+                <table class="tableStyle">
+                    <thead>
+                    <tr>
+                        <th>Ordre nr.</th>
+                        <th>Kunde nr.</th>
+                        <th>Status</th>
+                        <th>Rediger</th>
+                    </tr>
+                    </thead>
+                    <tbody class="bodyText">
+                    <tr th:each="ordre : ${ordreList}">
+                        <td th:text="${ordre.ordre_nummer}"></td>
+                        <td th:text="${ordre.kunde_nummer}"></td>
+                        <td th:text="${ordre.ordre_status}"></td>
+                        <td th:text="${ordre.ordre_rediger}"></td>
+                    <tbody>
 
-            </table>
+                </table>
+            </div>
         </div>
     </nav>
 </main>

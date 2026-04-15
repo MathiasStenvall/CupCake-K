@@ -463,6 +463,33 @@ button:hover {
 }
 
 
+/*-----------Tabel admin---------------*/
+
+
+.adminTabel .tableStyle th {
+    background-color: #FD99CB;
+    color: black;
+    padding: 10px;
+    text-align: left;
+}
+
+.adminTabel .tableStyle td {
+    padding: 10px;
+}
+
+.adminTabel .tableStyle tbody tr:nth-child(odd) {
+    background-color: #FFDCDC;
+}
+
+.adminTabel .tableStyle tbody tr:nth-child(even) {
+    background-color: #FFC9C9;
+}
+
+
+
+
+
+
 /*-----------Input box---------------*/
 .containerBox {
     width: 300px;
