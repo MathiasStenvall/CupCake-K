@@ -28,8 +28,6 @@ public class CupcakeMapper {
         try (Connection connection = cp.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
              ps.executeUpdate();
-
-            System.out.println("yay");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -52,7 +50,6 @@ public class CupcakeMapper {
                 double price = rs.getDouble("price");
 
                 Cupcake cupcake = new Cupcake(id, baseId, baseName, toppingId, toppingName, price);
-
                 cupcakeList.addCupcake(cupcake);
             }
 

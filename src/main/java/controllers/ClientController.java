@@ -1,20 +1,20 @@
 package controllers;
 
-import entities.Client;
-import entities.Cupcake;
-import entities.CupcakeList;
-import entities.User;
+import entities.*;
 import io.javalin.Javalin;
 import persistence.ConnectionPool;
 import io.javalin.http.Context;
 import persistence.CupcakeMapper;
 import persistence.UserMapper;
 
+import java.util.Map;
+
 public class ClientController {
 
     Javalin app;
     ConnectionPool connectionPool;
     UserMapper usermapper;
+    Basket basket;
 
     public ClientController(Javalin app, ConnectionPool connectionPool) {
         this.app = app;
@@ -22,13 +22,15 @@ public class ClientController {
         this.usermapper = new UserMapper(connectionPool);
     }
 
-    public void addRoutes(){
+    public void addRoutes() {
+
+
         app.get("/login", ctx -> ctx.render("Login.html"));
         app.get("/creatingAccount", ctx -> ctx.render("CreatAccount"));
         app.get("/ordre", ctx -> ctx.render("Odrersite.html"));
         app.get("/gallery", ctx -> ctx.render("Gallery.html"));
         app.get("/index", ctx -> ctx.render("Index.html"));
-        app.get("/basket", ctx -> ctx.render("Basket.html"));
+        app.get("/basket", ctx -> getBasket(ctx));
         app.get("/location", ctx -> ctx.render("info/Location.html"));
         app.get("/contact", ctx -> ctx.render("info/Contact.html"));
         app.get("/about", ctx -> ctx.render("info/About.html"));
@@ -39,15 +41,17 @@ public class ClientController {
         app.post("m", ctx -> setBasket(ctx));
     }
 
-    public void login(Context ctx){
+    public void login(Context ctx) {
         String email = ctx.formParam("email");
         String password = ctx.formParam("password");
 
-        User user = usermapper.login(email,password);
+        User user = usermapper.login(email, password);
+        basket = new Basket(user, connectionPool);
+
         ctx.render("Index.html");
     }
 
-    public void createClient(Context ctx){
+    public void createClient(Context ctx) {
         String firstname = ctx.formParam("firstname");
         String lastname = ctx.formParam("lastname");
         String email = ctx.formParam("email");
@@ -58,10 +62,10 @@ public class ClientController {
         ctx.render("Index.html");
     }
 
-    public void createCupCake(Context ctx){
+    public void createCupCake(Context ctx) {
         String bottom = ctx.formParam("selectbottom");
         String top = ctx.formParam("selecttop");
-
+        int amount = Integer.parseInt(ctx.formParam("amount"));
 
         CupcakeMapper cupcakeMapper = new CupcakeMapper(connectionPool);
         CupcakeList cupcakeList = new CupcakeList();
@@ -69,14 +73,22 @@ public class ClientController {
         cupcakeMapper.generateCupcakes();
         cupcakeMapper.getAllCupcakes(cupcakeList);
 
+        for(Cupcake cupcake: cupcakeList.getCupcakeList()){
+            if (cupcake.getBaseName().equals(bottom)
+                    && cupcake.getToppingName().equals(top)) {
 
-        System.out.println(cupcakeList.getCupcakeList());
-
-
+                cupcake.setAmount(amount);
+                basket.addCupcakeToBasket(cupcake);
+            }
+        }
         ctx.render("Odrersite.html");
     }
 
-    public void setBasket(Context ctx){
+    public void getBasket(Context ctx){
+        ctx.render("Basket.html", Map.of("basketCupcakes", basket.getBasketCupcakes()));
+    }
+
+    public void setBasket(Context ctx) {
         ctx.render("");
     }
 
