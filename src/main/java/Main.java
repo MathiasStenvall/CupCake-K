@@ -36,5 +36,8 @@ public class Main {
         OrderList orderList = new OrderList();
         orderMapper.getAllOrders(orderList);
 
+        CupcakeMapper cupcakeMapper = new CupcakeMapper(connectionPool);
+        cupcakeMapper.generateCupcakes();
+
     }
 }
