@@ -50,6 +50,7 @@
                         <th>Stk. Pris</th>
                         <th>Antal</th>
                         <th></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody class="bodyText">
@@ -60,6 +61,7 @@
                         <td th:text="${basket.amount}"></td>
                         <td class="action">
                             <form method="post" th:action="edit">
+                                <input type="hidden" name="basket" th:value="${basket}">
                                 <button class="fotoIkon">
                                     <img src="/images/blyant.png" alt="Rededit">
                                 </button>
@@ -91,6 +93,8 @@
         </div>
     </nav>
 
+
+    <p class="top-nav"></p>
 
 </main>
 
