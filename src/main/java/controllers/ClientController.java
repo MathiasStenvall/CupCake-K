@@ -36,7 +36,9 @@ public class ClientController {
         app.post("/createAccount", ctx -> createClient(ctx));
         app.post("/login", ctx -> login(ctx));
         app.post("/createCupcake", ctx -> createCupCake(ctx));
-        app.post("m", ctx -> setBasket(ctx));
+        app.post("/delete", ctx -> deleteCupcake(ctx));
+
+
     }
 
     public void login(Context ctx) {
@@ -78,6 +80,18 @@ public class ClientController {
             }
         }
         ctx.render("Odrersite.html");
+    }
+
+    public void deleteCupcake(Context ctx){
+        String cupcakeline = ctx.formParam("basket");
+
+        basket.getBasketCupcakes().remove(cupcakeline);
+
+        ctx.render("Odrersite.html");
+    }
+
+    public void editCupcake(Context ctx){
+
     }
 
     public void getBasket(Context ctx){
