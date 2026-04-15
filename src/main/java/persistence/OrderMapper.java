@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -117,4 +118,76 @@ public class OrderMapper {
         }
 
     }
+
+    public boolean removeOrder(int id) {
+
+        String sql = "DELETE FROM orders WHERE order_id = ?";
+
+        try (Connection connection = cp.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+
+            return ps.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+    }
+
+    public List<Order> getOrderByInputs(String date, Integer orderId, Integer userId) {
+
+        List<Order> orderList = new ArrayList<>();
+        StringBuilder sql = new StringBuilder("SELECT * FROM orders WHERE 1=1");
+
+        try (Connection connection = cp.getConnection()) {
+
+            List<Object> parameters = new ArrayList<>();
+
+            if (date != null && !date.isEmpty()) {
+                sql.append(" AND date = ?");
+                parameters.add(date);
+            }
+
+            if (orderId != null) {
+                sql.append(" AND order_id = ?");
+                parameters.add(orderId);
+            }
+
+            if (userId != null) {
+                sql.append(" AND user_id = ?");
+                parameters.add(userId);
+            }
+
+            try (PreparedStatement ps = connection.prepareStatement(sql.toString())) {
+
+                for (int i = 0; i < parameters.size(); i++) {
+                    ps.setObject(i + 1, parameters.get(i));
+                }
+
+                try (ResultSet rs = ps.executeQuery()) {
+
+                    while (rs.next()) {
+                        Order order = new Order(
+                                rs.getInt("order_id"),
+                                rs.getInt("user_id"),
+                                rs.getString("date"),
+                                rs.getDouble("price"),
+                                rs.getBoolean("paid")
+                        );
+
+                        orderList.add(order);
+
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return orderList;
+    }
+
 }
