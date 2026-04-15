@@ -407,11 +407,23 @@ button:hover {
 
 .fotoIkon {
     height: clamp(10px, 20vw, 30px);
+    display: block;
+    background-color: transparent; /* vigtig */
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    box-shadow: none;
 }
+
+.fotoIkon img{
+    height: clamp(20px, 4vw, 24px);
+}
+
 
 /*-----------Tabel---------------*/
 .tableWrapper {
-    width: 70%;
+    width: 50%;
     max-width: 1100px;
     margin: auto;
     overflow-x: auto;
@@ -446,7 +458,7 @@ button:hover {
     background-color: #D7D2FF;
 }
 
-.-basket .tableStyle tbody tr:nth-child(even) {
+.basket .tableStyle tbody tr:nth-child(even) {
     background-color: #EDEBFF;
 }
 
