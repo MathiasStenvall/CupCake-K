@@ -190,4 +190,35 @@ public class OrderMapper {
         return orderList;
     }
 
+    public List<Order> clientOrders(int userId) {
+
+        List<Order> orderList = new ArrayList<>();
+        String sql = "SELECT order_id, user_id, date, price, paid FROM orders WHERE user_id = ? ORDER BY date DESC";
+
+        try (Connection connection = cp.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, userId);
+
+            try (ResultSet rs = ps.executeQuery()){
+                while (rs.next()){
+                    int orderId = rs.getInt("order_id");
+                    int userWithId = rs.getInt("user_id");
+                    String date = rs.getString("date");
+                    double price = rs.getDouble("price");
+                    boolean paid = rs.getBoolean("paid");
+
+                    Order order = new Order(orderId, userWithId, date, price, paid);
+                    orderList.add(order);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return orderList;
+
+    }
+
 }
