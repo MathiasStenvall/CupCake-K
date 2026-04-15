@@ -23,8 +23,6 @@ public class ClientController {
     }
 
     public void addRoutes() {
-
-
         app.get("/login", ctx -> ctx.render("Login.html"));
         app.get("/creatingAccount", ctx -> ctx.render("CreatAccount"));
         app.get("/ordre", ctx -> ctx.render("Odrersite.html"));
@@ -34,10 +32,6 @@ public class ClientController {
         app.get("/location", ctx -> ctx.render("info/Location.html"));
         app.get("/contact", ctx -> ctx.render("info/Contact.html"));
         app.get("/about", ctx -> ctx.render("info/About.html"));
-
-
-        app.post("/delete", ctx -> createClient(ctx));
-
 
         app.post("/createAccount", ctx -> createClient(ctx));
         app.post("/login", ctx -> login(ctx));
