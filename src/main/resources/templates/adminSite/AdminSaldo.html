@@ -2,6 +2,7 @@
 <html lang="da">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin_Saldo</title>
 
     <link rel="stylesheet" th:href="@{/css/Stylesheet.css}">
@@ -50,7 +51,8 @@
                 <label for="customer_number">Kunde nr:</label>
                 <input type="text" id="customer_number" name="customer_number">
             </div>
-            <div class="infoTabel">
+
+            <div class="button-group">
                 <form action="/viewusernumber" method="get">
                     <button type="submit">Søg kundenummer</button>
                 </form>

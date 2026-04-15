@@ -45,6 +45,10 @@ main {
     height: auto;
 }
 
+.logoSize a:hover {
+    opacity: 0.7%;
+}
+
 /* ________________ text __________________  */
 
 h1 {
@@ -59,6 +63,17 @@ h2 {
     font-size: clamp(20px, 4vw, 24px);
 }
 
+.input-group input,
+.input-group select,
+.input-group label,
+.input-group-admin input,
+.input-group-admin select,
+.input-group-admin label{
+    font-family: "Indie Flower";
+    font-weight: 400;
+    font-size: clamp(16px, 4vw, 20px);
+
+}
 
 .account {
     position: absolute;
@@ -318,17 +333,29 @@ h2 {
 }
 
 
+.button-group {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+}
+
+
 /*____________________*/
 .infoTabel {
     position: relative;
-    display: inline-grid;
-    grid-template-columns: repeat(2, auto);
-    justify-content: space-between;
-    align-items: center;
-    width: 30%;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: start;
     list-style: none;
-    column-gap: 0;
+    column-gap: 20px;
+    row-gap: 15px;
+    width: 30%;
+    margin-right: auto;
+    margin-left: auto;
+
+
 }
 
 
@@ -367,6 +394,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-family: "Indie Flower";
+    font-size: clamp(18px, 4vw, 20px);
 }
 
 button:hover {
@@ -416,7 +444,7 @@ button:hover {
     box-shadow: none;
 }
 
-.fotoIkon img{
+.fotoIkon img {
     height: clamp(20px, 4vw, 24px);
 }
 
@@ -425,7 +453,8 @@ button:hover {
 .tableWrapper {
     width: 50%;
     max-width: 1100px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     overflow-x: auto;
 }
 
@@ -435,8 +464,8 @@ button:hover {
     width: 100%;
 
     font-family: "Indie Flower";
-    font-weight: 500;
-    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 400;
+    font-size: clamp(18px, 4vw, 20px);
     color: black;
 }
 
@@ -486,10 +515,6 @@ button:hover {
 }
 
 
-
-
-
-
 /*-----------Input box---------------*/
 .containerBox {
     width: 300px;
@@ -508,4 +533,109 @@ button:hover {
 .containerBox button {
     width: 100%;
     padding: 10px 0;
+}
+
+
+/*-------------Mobil--------------*/
+@media screen and (max-width: 768px) {
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+        display: flex;
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    .bodyText {
+        font-size: 26px;
+    }
+
+
+    .menu {
+        width: 90%;
+    }
+
+    .menu a {
+        font-size: 26px;
+    }
+
+    .account {
+        display: flex;
+        flex-wrap: wrap;
+        position: static;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0 0 0;
+        padding: 0;
+
+    }
+
+    .account a {
+        font-size: 26px;
+    }
+
+    .account li.right {
+        margin-left: 0;
+    }
+
+
+    .bigFoto img {
+        width: 80vw;
+    }
+
+    .footerDesign {
+        grid-template-columns: 1fr;
+        row-gap: 10px;
+        width: 90%;
+        justify-items: center;
+    }
+
+    .footerDesign a {
+        font-size: 26px;
+    }
+
+
+    .tableStyle {
+        font-size: 24px;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group label,
+    .input-group-admin input,
+    .input-group-admin select,
+    .input-group-admin label{
+        font-size: 20px;
+    }
+
+    button {
+        font-size: 20px;
+    }
+
+    .admin .menu {
+        font-size: 26px;
+        grid-template-columns: repeat(2, auto);
+    }
+
+    .infoTabel {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: center;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .tableWrapper {
+        width: 90%;
+    }
+
 }
