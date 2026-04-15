@@ -35,10 +35,6 @@ public class ClientController {
         app.get("/contact", ctx -> ctx.render("info/Contact.html"));
         app.get("/about", ctx -> ctx.render("info/About.html"));
 
-
-        app.post("/delete", ctx -> createClient(ctx));
-
-
         app.post("/createAccount", ctx -> createClient(ctx));
         app.post("/login", ctx -> login(ctx));
         app.post("/createCupcake", ctx -> createCupCake(ctx));
