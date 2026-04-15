@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class UserMapper {
@@ -102,7 +104,7 @@ public class UserMapper {
         String sql = "SELECT * FROM users WHERE user_id = ?";
 
         try (Connection connection = cp.getConnection();
-             PreparedStatement ps = connection.prepareStatement(sql)){
+             PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setInt(1, id);
 
@@ -123,31 +125,59 @@ public class UserMapper {
                     }
                 }
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
-    public boolean setBalance(double balance, int id){
+    public boolean setBalance(double balance, int id) {
 
         String sql = "UPDATE users SET balance = ? WHERE user_id = ?";
 
         try (Connection connection = cp.getConnection();
-        PreparedStatement ps = connection.prepareStatement(sql)){
+             PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setDouble(1, balance);
             ps.setInt(2, id);
 
             return ps.executeUpdate() > 0;
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
         }
     }
 
+    public List<Client> getAllClients() {
 
+        List<Client> clientList = new ArrayList<>();
+        String sql = "SELECT user_id, first_name, last_name, role, email, password, balance FROM users WHERE role = 'client'";
+
+        try (Connection connection = cp.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()){
+                int id = rs.getInt("user_id");
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                String role = rs.getString("role");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                double balance = rs.getDouble("balance");
+
+                Client client = new Client(id, firstName, lastName, role, email, password, balance);
+                clientList.add(client);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return clientList;
+
+    }
 
 }
 

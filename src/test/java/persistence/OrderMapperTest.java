@@ -135,6 +135,7 @@ class OrderMapperTest {
 
     }
 
+    // this also tests uploadOrderDetails()
     @org.junit.jupiter.api.Test
     void uploadOrder() {
 
@@ -162,4 +163,40 @@ class OrderMapperTest {
         assertEquals(expected,actual);
 
     }
+
+    @org.junit.jupiter.api.Test
+    void removeOrder() {
+
+        orderMapper.removeOrder(2);
+        OrderList orderList = new OrderList();
+        orderMapper.getAllOrders(orderList);
+
+        int expected = 1;
+        int actual = orderList.getOrderList().size();
+
+        assertEquals(expected, actual);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    void getOrdersByInputs() {
+        //testing different version of the same method
+        assertEquals(1, orderMapper.getOrderByInputs(null, 1, null).size());
+
+        assertEquals(2, orderMapper.getOrderByInputs("2026-04-14", null, null).size());
+
+        assertEquals(1, orderMapper.getOrderByInputs(null, null, 2).size());
+
+    }
+
+    @org.junit.jupiter.api.Test
+    void clientOrders(){
+
+        int expected = 1;
+        int actual = orderMapper.clientOrders(1).size();
+
+        assertEquals(expected, actual);
+
+    }
+
 }
