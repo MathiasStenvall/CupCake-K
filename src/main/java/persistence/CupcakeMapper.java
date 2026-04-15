@@ -50,7 +50,6 @@ public class CupcakeMapper {
                 double price = rs.getDouble("price");
 
                 Cupcake cupcake = new Cupcake(id, baseId, baseName, toppingId, toppingName, price);
-
                 cupcakeList.addCupcake(cupcake);
             }
 

@@ -28,6 +28,10 @@ public class Basket {
 
     }
 
+    public List<Cupcake> getBasketCupcakes() {
+        return basketCupcakes;
+    }
+
     public void removeCupcakeFromBasket(Cupcake cupcake){
         basketCupcakes.remove(cupcake);
         basketTotalPrice -= cupcake.getPrice() * cupcake.getAmount();
