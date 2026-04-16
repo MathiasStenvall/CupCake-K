@@ -56,5 +56,4 @@ public class Cupcake {
     public String toString (){
         return baseName + " " + toppingName;
     }
-
 }

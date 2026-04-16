@@ -37,18 +37,17 @@ public class ClientController {
         app.post("/login", ctx -> login(ctx));
         app.post("/createCupcake", ctx -> createCupCake(ctx));
         app.post("/delete", ctx -> deleteCupcake(ctx));
-
-
     }
 
     public void login(Context ctx) {
         String email = ctx.formParam("email");
         String password = ctx.formParam("password");
 
-        User user = usermapper.login(email, password);
-        basket = new Basket(user, connectionPool);
-
-        ctx.render("Index.html");
+        User user = usermapper.login(email.toLowerCase(), password);
+        if(user!=null) {
+            basket = new Basket(user, connectionPool);
+            ctx.render("Index.html");
+        }
     }
 
     public void createClient(Context ctx) {
@@ -58,7 +57,7 @@ public class ClientController {
         String password1 = ctx.formParam("password1");
         String password2 = ctx.formParam("password2");
 
-        Client client = usermapper.createClient(firstname, lastname, email, password1, password2);
+        Client client = usermapper.createClient(firstname.toLowerCase(), lastname.toLowerCase(), email.toLowerCase(), password1, password2);
         ctx.render("Index.html");
     }
 
@@ -72,8 +71,8 @@ public class ClientController {
         cupcakeMapper.getAllCupcakes(cupcakeList);
 
         for(Cupcake cupcake: cupcakeList.getCupcakeList()){
-            if (cupcake.getBaseName().equals(bottom)
-                    && cupcake.getToppingName().equals(top)) {
+            if (cupcake.getBaseName().equals(bottom) &&
+                    cupcake.getToppingName().equals(top)) {
 
                 cupcake.setAmount(amount);
                 basket.addCupcakeToBasket(cupcake);
@@ -83,15 +82,12 @@ public class ClientController {
     }
 
     public void deleteCupcake(Context ctx){
-        String cupcakeline = ctx.formParam("basket");
-
-        basket.getBasketCupcakes().remove(cupcakeline);
-
-        ctx.render("Odrersite.html");
+        int cupcakeId = Integer.parseInt(ctx.formParam("basket.id"));
+        basket.getBasketCupcakes().removeIf(c -> c.getId() == (cupcakeId));
+        getBasket(ctx);
     }
 
     public void editCupcake(Context ctx){
-
     }
 
     public void getBasket(Context ctx){

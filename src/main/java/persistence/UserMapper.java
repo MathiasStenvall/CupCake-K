@@ -150,7 +150,6 @@ public class UserMapper {
     }
 
     public List<Client> getAllClients() {
-
         List<Client> clientList = new ArrayList<>();
         String sql = "SELECT user_id, first_name, last_name, role, email, password, balance FROM users WHERE role = 'client'";
 
@@ -174,9 +173,7 @@ public class UserMapper {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
         return clientList;
-
     }
 
 }
