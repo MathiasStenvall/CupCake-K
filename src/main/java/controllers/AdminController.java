@@ -63,12 +63,14 @@ public class AdminController {
     public void getCustomer(Context ctx) {
         List<Client> clientList = new ArrayList<>();
 
-        String firstName = ctx.formParam("customer_name") == null ? "" : ctx.formParam("customer_name");
+        String firstName = ctx.formParam("customer_firstname") == null ? "" : ctx.formParam("customer_firstname");
+        String firstLastname = ctx.formParam("customer_lastname") == null ? "" : ctx.formParam("customer_lastname");
         String userId = ctx.formParam("customer_number") == null ? "" : ctx.formParam("customer_number");
         String email = ctx.formParam("customer_email") == null ? "" : ctx.formParam("customer_email");
 
         for (Client client : userMapper.getAllClients())
             if (client.getFirstName().toLowerCase().contains(firstName.toLowerCase()) &&
+                    client.getLastName().toLowerCase().contains(firstLastname.toLowerCase()) &&
                     String.valueOf(client.getUserID()).contains(userId) &&
                     client.getEmail().contains(email))
 
