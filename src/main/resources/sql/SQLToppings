@@ -2,7 +2,7 @@ INSERT INTO toppings(name, price) VALUES
 ('chokolade', 5.00),
 ('blåbær', 5.00),
 ('hindbær', 5.00),
-('sprød', 6.00),
+('nougatin', 6.00),
 ('jordbær', 6.00),
 ('rom/rosin', 7.00),
 ('appelsin', 8.00),
