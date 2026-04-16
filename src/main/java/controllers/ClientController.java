@@ -32,6 +32,7 @@ public class ClientController {
         app.get("/location", ctx -> ctx.render("info/Location.html"));
         app.get("/contact", ctx -> ctx.render("info/Contact.html"));
         app.get("/about", ctx -> ctx.render("info/About.html"));
+        app.get("/logout", ctx -> logout(ctx));
 
         app.post("/createAccount", ctx -> createClient(ctx));
         app.post("/login", ctx -> login(ctx));
@@ -45,6 +46,7 @@ public class ClientController {
 
         User user = usermapper.login(email.toLowerCase(), password);
         if(user!=null) {
+            ctx.sessionAttribute("user", user);
             basket = new Basket(user, connectionPool);
             ctx.render("Index.html");
         }
@@ -96,6 +98,11 @@ public class ClientController {
 
     public void setBasket(Context ctx) {
         ctx.render("");
+    }
+
+    public void logout(Context ctx){
+        ctx.sessionAttribute("user", null);
+        ctx.render("/Index.html");
     }
 
 }

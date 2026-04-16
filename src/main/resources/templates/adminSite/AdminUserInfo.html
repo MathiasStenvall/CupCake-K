@@ -19,9 +19,10 @@
             </div>
         </nav>
         <ul class="account">
-            <div id="email">E-mail</div>
-            <li><a th:href="@{/adminsite}">Admin</a></li>
-            <li><a th:href="@{/index}">Log Ud</a></li>
+            <div id="email" th:if="${session.user != null}">
+                <p th:text="${session.user.email}"></p>
+            </div>
+            <li th:if="${session.user != null}"><a th:href="@{/logout}">Log Ud</a></li>
         </ul>
     </div>
 
