@@ -2,6 +2,7 @@
 <html lang="da">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin_Saldo</title>
 
     <link rel="stylesheet" th:href="@{/css/Stylesheet.css}">
@@ -48,9 +49,10 @@
         <div class="infoTabel">
             <div class="input-group-admin">
                 <label for="customer_number">Kunde nr:</label>
-                <input type="text" id="customer_number" name="customer_number">
+                <input type="number" id="customer_number" name="customer_number">
             </div>
-            <div class="infoTabel">
+
+            <div class="button-group">
                 <form action="/viewusernumber" method="get">
                     <button type="submit">Søg kundenummer</button>
                 </form>
@@ -58,23 +60,25 @@
         </div>
     </nav>
     <nav class="navCenter">
-        <div class="tableWrapper">
-            <table class="tableStyle">
-                <thead>
-                <tr>
-                    <th>Kunde nr.</th>
-                    <th>Saldo</th>
-                    <th>Tilføj saldo</th>
-                </tr>
-                </thead>
-                <tbody class="bodyText">
-                <tr th:each="customer : ${customerList}">
-                    <td th:text="${customer.kunde_nummer}"></td>
-                    <td th:text="${customer.kunde_saldo}"></td>
-                    <td th:text="${customer.kunde_opdatert_saldo}"></td>
-                <tbody>
+        <div class="adminTabel">
+            <div class="tableWrapper">
+                <table class="tableStyle">
+                    <thead>
+                    <tr>
+                        <th>Kunde nr.</th>
+                        <th>Saldo</th>
+                        <th>Tilføj saldo</th>
+                    </tr>
+                    </thead>
+                    <tbody class="bodyText">
+                    <tr th:each="customer : ${customerList}">
+                        <td th:text="${customer.kunde_nummer}"></td>
+                        <td th:text="${customer.kunde_saldo}"></td>
+                        <td th:text="${customer.kunde_opdatert_saldo}"></td>
+                    <tbody>
 
-            </table>
+                </table>
+            </div>
         </div>
     </nav>
     <nav class="navCenter">

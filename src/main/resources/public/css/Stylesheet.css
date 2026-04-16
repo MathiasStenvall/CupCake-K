@@ -33,18 +33,19 @@ main {
 
 /* _______________ logo__________________  */
 
-.logoplace {
+.logoplace{
     justify-content: center;
     display: flex;
+}
 
-
+.logoplace a:hover {
+    opacity: 0.7;
 }
 
 .logoSize {
     width: clamp(160px, 23%, 260px);
     height: auto;
 }
-
 /* ________________ text __________________  */
 
 h1 {
@@ -59,6 +60,17 @@ h2 {
     font-size: clamp(20px, 4vw, 24px);
 }
 
+.input-group input,
+.input-group select,
+.input-group label,
+.input-group-admin input,
+.input-group-admin select,
+.input-group-admin label{
+    font-family: "Indie Flower";
+    font-weight: 400;
+    font-size: clamp(16px, 4vw, 20px);
+
+}
 
 .account {
     position: absolute;
@@ -133,7 +145,7 @@ h2 {
     font-family: "Indie Flower";
     font-weight: 500;
     font-size: clamp(18px, 2vw, 22px);
-    max-width: 60%;
+    max-width: 50%;
     text-align: center;
     margin: 0 auto;
     padding: 10px;
@@ -148,6 +160,17 @@ h2 {
 .navCenter {
     text-align: center;
     margin: 0 auto;
+}
+
+.navAlign{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50%;
 }
 
 /* ________________ Menu __________________  */
@@ -315,20 +338,33 @@ h2 {
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #3C1072;
+    appearance: auto;
+}
+
+
+.button-group {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
 }
 
 
 /*____________________*/
 .infoTabel {
     position: relative;
-    display: inline-grid;
-    grid-template-columns: repeat(2, auto);
-    justify-content: space-between;
-    align-items: center;
-    width: 30%;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: start;
     list-style: none;
-    column-gap: 0;
+    column-gap: 20px;
+    row-gap: 15px;
+    width: 30%;
+    margin-right: auto;
+    margin-left: auto;
+
+
 }
 
 
@@ -367,6 +403,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-family: "Indie Flower";
+    font-size: clamp(18px, 4vw, 20px);
 }
 
 button:hover {
@@ -416,7 +453,7 @@ button:hover {
     box-shadow: none;
 }
 
-.fotoIkon img{
+.fotoIkon img {
     height: clamp(20px, 4vw, 24px);
 }
 
@@ -425,7 +462,8 @@ button:hover {
 .tableWrapper {
     width: 50%;
     max-width: 1100px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     overflow-x: auto;
 }
 
@@ -435,8 +473,8 @@ button:hover {
     width: 100%;
 
     font-family: "Indie Flower";
-    font-weight: 500;
-    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 400;
+    font-size: clamp(18px, 4vw, 20px);
     color: black;
 }
 
@@ -463,6 +501,29 @@ button:hover {
 }
 
 
+/*-----------Tabel admin---------------*/
+
+
+.adminTabel .tableStyle th {
+    background-color: #FD99CB;
+    color: black;
+    padding: 10px;
+    text-align: left;
+}
+
+.adminTabel .tableStyle td {
+    padding: 10px;
+}
+
+.adminTabel .tableStyle tbody tr:nth-child(odd) {
+    background-color: #FFDCDC;
+}
+
+.adminTabel .tableStyle tbody tr:nth-child(even) {
+    background-color: #FFC9C9;
+}
+
+
 /*-----------Input box---------------*/
 .containerBox {
     width: 300px;
@@ -481,4 +542,113 @@ button:hover {
 .containerBox button {
     width: 100%;
     padding: 10px 0;
+}
+
+
+/*-------------Mobil--------------*/
+@media screen and (max-width: 768px) {
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+        display: flex;
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    .bodyText {
+        font-size: 26px;
+    }
+
+
+    .menu {
+        width: 90%;
+    }
+
+    .menu a {
+        font-size: 26px;
+    }
+
+    .account {
+        display: flex;
+        flex-wrap: wrap;
+        position: static;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        margin: 10px 0 0 0;
+        padding: 0;
+
+    }
+
+    .account a {
+        font-size: 26px;
+    }
+
+    .account li.right {
+        margin-left: 0;
+    }
+
+
+    .bigFoto img {
+        width: 80vw;
+    }
+
+    .footerDesign {
+        grid-template-columns: 1fr;
+        row-gap: 10px;
+        width: 90%;
+        justify-items: center;
+    }
+
+    .footerDesign a {
+        font-size: 26px;
+    }
+
+
+    .tableStyle {
+        font-size: 24px;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group label,
+    .input-group-admin input,
+    .input-group-admin select,
+    .input-group-admin label{
+        font-size: 20px;
+    }
+
+    button {
+        font-size: 20px;
+    }
+
+    .admin .menu {
+        font-size: 26px;
+        grid-template-columns: repeat(2, auto);
+    }
+
+    .infoTabel {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: center;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .tableWrapper {
+        width: 90%;
+    }
+
+    .bodyTextCenter {
+        max-width: 85%;
+    }
+
 }

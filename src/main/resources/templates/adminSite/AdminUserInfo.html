@@ -2,6 +2,7 @@
 <html lang="da">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin_User_Info</title>
 
     <link rel="stylesheet" th:href="@{/css/Stylesheet.css}">
@@ -45,44 +46,52 @@
     <nav class="navCenter">
         <h2>Kunde-oversigt</h2>
         <div class="infoTabel">
-            <div class="input-group-admin">
-                <form th:action="@{/viewuserinfo}" method="post">
+            <form th:action="@{/viewuserinfo}" method="post">
+                <div class="input-group-admin">
+                    <label for="customer_firstname">fornavn:</label>
+                    <input type="text" id="customer_firstname" name="customer_firstname">
 
-                    <label for="customer_name">Navn:</label>
-                    <input type="text" id="customer_name" name="customer_name">
-
+                    <label for="customer_lastname">efternavn:</label>
+                    <input type="text" id="customer_lastname" name="customer_lastname">
+                </div>
+                <div class="input-group-admin">
                     <label for="customer_number">Kunde nr.:</label>
                     <input type="number" id="customer_number" name="customer_number">
 
                     <label for="customer_email">E-mail:</label>
                     <input type="email" id="customer_email" name="customer_email">
+                    <p></p>
 
-                    <button type="submit">Søg</button>
-                </form>
-
-            </div>
+                </div>
+            </form>
         </div>
+        <form action="/viewuserinfo" method="get">
+            <button type="submit">Søg</button>
+        </form>
+
     </nav>
     <nav class="navCenter">
-        <div class="tableWrapper">
-            <table class="tableStyle">
-                <thead>
-                <tr>
-                    <th>Kunde nr.</th>
-                    <th>Navn</th>
-                    <th>Efternavn</th>
-                    <th>E-mail</th>
-                </tr>
-                </thead>
-                <tbody class="bodyText">
-                <tr th:each="customer : ${customerList}">
-                    <td th:text="${customer.userID}"></td>
-                    <td th:text="${customer.firstName}"></td>
-                    <td th:text="${customer.lastName}"></td>
-                    <td th:text="${customer.email}"></td>
-                <tbody>
+        <div class="adminTabel">
+            <div class="tableWrapper">
+                <table class="tableStyle">
+                    <thead>
+                    <tr>
+                        <th>Kunde nr.</th>
+                        <th>Navn</th>
+                        <th>Efternavn</th>
+                        <th>E-mail</th>
+                    </tr>
+                    </thead>
+                    <tbody class="bodyText">
+                    <tr th:each="customer : ${customerList}">
+                        <td th:text="${customer.userID}"></td>
+                        <td th:text="${customer.firstName}"></td>
+                        <td th:text="${customer.lastName}"></td>
+                        <td th:text="${customer.email}"></td>
+                    <tbody>
 
-            </table>
+                </table>
+            </div>
         </div>
     </nav>
 
