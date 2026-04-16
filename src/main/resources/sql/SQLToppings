@@ -1,11 +1,11 @@
 INSERT INTO toppings(name, price) VALUES
-('chocolate', 5.00),
-('blueberry', 5.00),
-('raspberry', 5.00),
-('crispy', 6.00),
-('strawberry', 6.00),
-('rum/raisin', 7.00),
-('orange', 8.00),
-('lemon', 8.00),
-('blue cheese', 9.00),
-('plain' , 0);
+('chokolade', 5.00),
+('blåbær', 5.00),
+('hindbær', 5.00),
+('sprød', 6.00),
+('jordbær', 6.00),
+('rom/rosin', 7.00),
+('appelsin', 8.00),
+('citron', 8.00),
+('blåskimmelost', 9.00),
+('uden topping' , 0);
