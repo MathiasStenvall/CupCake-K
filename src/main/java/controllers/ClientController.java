@@ -33,6 +33,7 @@ public class ClientController {
         app.get("/contact", ctx -> ctx.render("info/Contact.html"));
         app.get("/about", ctx -> ctx.render("info/About.html"));
         app.get("/logout", ctx -> logout(ctx));
+        app.get("/profile", ctx -> ctx.render("Profil.html"));
 
         app.post("/createAccount", ctx -> createClient(ctx));
         app.post("/login", ctx -> login(ctx));

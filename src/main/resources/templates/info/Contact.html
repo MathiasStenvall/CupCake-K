@@ -25,6 +25,7 @@
             <li th:if="${session.user == null}"><a th:href="@{/login}">Login </a></li>
             <li th:if="${session.user == null}"><a th:href="@{/creatingAccount}">Opret bruger </a></li>
             <li th:if="${session.user != null && session.user.role == 'admin'}"><a th:href="@{/adminsite}">Admin</a></li>
+            <li th:if="${session.user != null && session.user.role == 'client'}"><a th:href="@{/profile}">Profil</a></li>
             <li th:if="${session.user != null}"><a th:href="@{/logout}">Log Ud</a></li>
         </ul>
     </div>
