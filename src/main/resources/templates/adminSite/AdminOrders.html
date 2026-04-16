@@ -47,22 +47,20 @@
         <h2>Ordre-Oversigt</h2>
         <div class="infoTabel">
             <div class="input-group-admin">
-                <label for="ordre_date">Dato:</label>
-                <input type="text" id="ordre_date" name="ordre_date">
+                <form action="/vieworderinfo" method="post">
+                    <label for="ordre_date">Dato:</label>
+                    <input type="text" id="ordre_date" name="ordre_date">
 
-                <label for="customer_number">Kunde nr.:</label>
-                <input type="number" id="customer_number" name="customer_number">
+                    <label for="customer_number">Kunde nr.:</label>
+                    <input type="number" id="customer_number" name="customer_number">
 
-            </div>
-            <div class="input-group-admin">
-                <label for="ordre_number">Ordre nr:</label>
-                <input type="number" id="ordre_number" name="ordre_number">
-                <p></p>
-                <form action="/vieworderinfo" method="get">
+                    <label for="ordre_number">Ordre nr:</label>
+                    <input type="number" id="ordre_number" name="ordre_number">
+
                     <button type="submit">Søg</button>
                 </form>
+
             </div>
-        </div>
     </nav>
 
     <nav class="navCenter">
@@ -77,11 +75,11 @@
                 </tr>
                 </thead>
                 <tbody class="bodyText">
-                <tr th:each="ordre : ${ordreList}">
-                    <td th:text="${ordre.ordre_nummer}"></td>
-                    <td th:text="${ordre.kunde_nummer}"></td>
-                    <td th:text="${ordre.ordre_status}"></td>
-                    <td th:text="${ordre.ordre_rediger}"></td>
+                <tr th:each="order : ${orderList}">
+                    <td th:text="${order.orderId}"></td>
+                    <td th:text="${order.userId}"></td>
+                    <td th:text="${order.paid}"></td>
+                    <td th:text="${order.price}"></td>
                 <tbody>
 
             </table>

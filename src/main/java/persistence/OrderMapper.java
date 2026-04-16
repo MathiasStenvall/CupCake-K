@@ -1,9 +1,6 @@
 package persistence;
 
-import entities.Cupcake;
-import entities.Order;
-import entities.OrderList;
-import entities.User;
+import entities.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +18,8 @@ public class OrderMapper {
         this.cp = cp;
     }
 
-    public void getAllOrders(OrderList orderList) {
+    public List<Order> getAllOrders() {
+        List<Order> orderList = new ArrayList<>();
         String sql = "SELECT order_id, user_id, date, price, paid FROM orders";
 
         try (Connection connection = cp.getConnection();
@@ -36,12 +34,13 @@ public class OrderMapper {
                 boolean paid = rs.getBoolean("paid");
 
                 Order order = new Order(orderId, userId, date, price, paid);
-                orderList.addOrder(order);
+                orderList.add(order);
             }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return orderList;
     }
 
     public void uploadOrder(User user, List<Cupcake> cupcakes, double price) {
