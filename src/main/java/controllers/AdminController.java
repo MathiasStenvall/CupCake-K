@@ -2,6 +2,7 @@ package controllers;
 
 import entities.Client;
 import entities.Order;
+import entities.User;
 import io.javalin.Javalin;
 import persistence.ConnectionPool;
 import io.javalin.http.Context;
@@ -36,6 +37,8 @@ public class AdminController {
 
         app.post("/viewuserinfo", ctx -> getCustomer(ctx));
         app.post("/vieworderinfo", ctx -> getOrders(ctx));
+        app.post("/viewusernumber", ctx -> searchCustomer(ctx));
+        app.post("/saldoIndput", ctx -> setBalance(ctx));
 
 
     }
@@ -78,7 +81,16 @@ public class AdminController {
         ctx.render("adminSite/AdminUserInfo.html", Map.of("customerList", clientList));
     }
 
-    public void setBalance(Context ctx) {
-        ctx.render("");
+    public void searchCustomer(Context ctx) {
+        int userID = Integer.parseInt(ctx.formParam("customer_number"));
+        ctx.sessionAttribute("userID",userID);
+        User client = userMapper.getCustomer(userID);
+        ctx.render("adminSite/AdminSaldo.html", Map.of("client", client));
+    }
+
+    public void setBalance(Context ctx){
+        double saldoInput = Integer.parseInt(ctx.formParam("input_saldo"));
+        userMapper.setBalance(saldoInput, ctx.sessionAttribute("userID"));
+        ctx.render("adminSite/AdminSaldo.html");
     }
 }

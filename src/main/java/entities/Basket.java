@@ -37,7 +37,7 @@ public class Basket {
         basketTotalPrice -= cupcake.getPrice() * cupcake.getAmount();
     }
 
-    public void payBasket(){
+    public boolean payBasket(){
         if (basketUser.getBalance() >= basketTotalPrice){
             basketUser.setBalance(basketUser.getBalance() - basketTotalPrice);
 
@@ -46,8 +46,9 @@ public class Basket {
 
             basketTotalPrice = 0;
             basketCupcakes.clear();
+            return true;
         } else {
-            System.out.println("Insufficient balance");
+            return false;
         }
     }
 

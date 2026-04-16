@@ -5,21 +5,25 @@ import io.javalin.Javalin;
 import persistence.ConnectionPool;
 import io.javalin.http.Context;
 import persistence.CupcakeMapper;
+import persistence.OrderMapper;
 import persistence.UserMapper;
 
+import javax.swing.*;
 import java.util.Map;
 
 public class ClientController {
 
     Javalin app;
     ConnectionPool connectionPool;
-    UserMapper usermapper;
+    UserMapper userMapper;
+    OrderMapper orderMapper;
     Basket basket;
 
     public ClientController(Javalin app, ConnectionPool connectionPool) {
         this.app = app;
         this.connectionPool = connectionPool;
-        this.usermapper = new UserMapper(connectionPool);
+        this.userMapper = new UserMapper(connectionPool);
+        this.orderMapper = new OrderMapper(connectionPool);
     }
 
     public void addRoutes() {
@@ -37,13 +41,14 @@ public class ClientController {
         app.post("/login", ctx -> login(ctx));
         app.post("/createCupcake", ctx -> createCupCake(ctx));
         app.post("/delete", ctx -> deleteCupcake(ctx));
+        app.post("bestilordre",ctx->sendOrder(ctx));
     }
 
     public void login(Context ctx) {
         String email = ctx.formParam("email");
         String password = ctx.formParam("password");
 
-        User user = usermapper.login(email.toLowerCase(), password);
+        User user = userMapper.login(email.toLowerCase(), password);
         if(user!=null) {
             basket = new Basket(user, connectionPool);
             ctx.render("Index.html");
@@ -57,7 +62,7 @@ public class ClientController {
         String password1 = ctx.formParam("password1");
         String password2 = ctx.formParam("password2");
 
-        Client client = usermapper.createClient(firstname.toLowerCase(), lastname.toLowerCase(), email.toLowerCase(), password1, password2);
+        Client client = userMapper.createClient(firstname.toLowerCase(), lastname.toLowerCase(), email.toLowerCase(), password1, password2);
         ctx.render("Index.html");
     }
 
@@ -96,6 +101,15 @@ public class ClientController {
 
     public void setBasket(Context ctx) {
         ctx.render("");
+    }
+
+    public void sendOrder(Context ctx) {
+        if(basket.payBasket()){
+            System.out.println("Betalt");
+        } else {
+            System.out.println("Ikke betalt. For labv saldo");
+        }
+        ctx.render("Odrersite.html");
     }
 
 }
