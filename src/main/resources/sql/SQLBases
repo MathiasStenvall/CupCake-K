@@ -1,6 +1,6 @@
 INSERT INTO bases (name, price) VALUES
-('chocolate', 5.00),
-('vanilla', 5.00),
-('nutmeg', 5.00),
-('pistacio', 6.00),
-('almond', 7.00);
+('chokolade', 5.00),
+('vanilje', 5.00),
+('muskatnød', 5.00),
+('pistacie', 6.00),
+('mandel', 7.00);
