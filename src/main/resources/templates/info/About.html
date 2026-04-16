@@ -2,32 +2,38 @@
 <html lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
     <link rel="stylesheet" th:href="@{/css/Stylesheet.css}">
 </head>
 <body>
 <header>
-    <div class="header">
-        <div class="logoplace">
-            <a th:href="@{/index}">
-                <img src="/images/logoMuffin.png" class="logoSize">
-            </a>
-        </div>
 
+    <div class="header">
+        <nav class="navCenter">
+            <div class="logoplace">
+                <a th:href="@{/index}">
+                    <img src="/images/logoMuffin.png" class="logoSize">
+                </a>
+            </div>
+        </nav>
         <ul class="account">
-                <li><a th:href="@{/login}"> Login </a></li>
-                <li><a th:href="@{/creatingAccount}"> Opret bruger </a></li>
+            <li><a th:href="@{/login}">Login </a></li>
+            <li><a th:href="@{/creatingAccount}">Opret bruger </a></li>
+            <li><a th:href="@{/adminsite}">Admin</a></li>
         </ul>
     </div>
 
-    <ul class="menu">
-        <li><a th:href="@{/ordre}"> Bestil </a></li>
-        <li><a th:href="@{/gallery}"> Galleri </a></li>
-        <a th:href="@{/basket}">
-            <img src="/images/kurv.png" class="fotoIkon">
-        </a>
-    </ul>
-
+    <nav class="navCenter">
+        <ul class="menu">
+            <li><a th:href="@{/ordre}"> Bestil </a></li>
+            <li><a th:href="@{/gallery}"> Galleri </a></li>
+            <a th:href="@{/basket}">
+                <img src="/images/kurv.png" class="fotoIkon">
+            </a>
+        </ul>
+    </nav>
 
     <nav class="navCenter">
         <div class="menuLine">
@@ -37,17 +43,30 @@
 </header>
 
 
+
 <main>
+
+    <p class="top-nav"></p>
+    <nav class="navCenter">
+        <h2>Om os</h2>
+        <p class="bodyTextCenter"> askh ndkasn flanfa sfnlk asn-san
+            afkkl adsæ nflæasmfa æls asfnklnaslknflas njfalsnfl ka ssakln flkasfmalæsf asfænaslkfn nlanfmlaksmnf
+            ma snflæk asnfæalksnflkasn falsnklf æanslkfna læf kaneæ kds -fnas </p>
+    </nav>
+
 
 
 </main>
 
-<footer class="footer">
-    <ul class="footerDesign">
-        <li><a th:href="@{/location}"> Find os </a></li>
-        <li><a th:href="@{/contact}"> Kontakt </a></li>
-        <li><a th:href="@{/about}"> Om os </a></li>
-    </ul>
+
+<footer>
+    <div class="navCenter">
+        <ul class="footerDesign">
+            <li><a th:href="@{/location}"> Find os </a></li>
+            <li><a th:href="@{/contact}"> Kontakt </a></li>
+            <li><a th:href="@{/about}"> Om os </a></li>
+        </ul>
+    </div>
 </footer>
 
 
