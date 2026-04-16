@@ -69,6 +69,7 @@
                         </td>
                         <td class="action">
                             <form method="post" th:action="@{/delete}">
+                                <input type="hidden" name="basket.id" th:value="${basket.id}" />
                                 <button class="fotoIkon">
                                     <img src="/images/x.png">
                                 </button>

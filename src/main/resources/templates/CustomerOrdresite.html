@@ -62,7 +62,7 @@
                         <td th:text="${ordrers.status}"><td>
                         </td>
                         <td class="action">
-                            <form method="post" action="pay">
+                            <form method="post" th:action="@{/pay}">
                                 <button type="submit"> Betal </button>
                             </form>
                         </td>
