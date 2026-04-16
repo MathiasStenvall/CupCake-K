@@ -17,8 +17,12 @@
             </div>
         </nav>
         <ul class="account">
-            <li><a th:href="@{/login}"> Login </a></li>
-            <li><a th:href="@{/creatingAccount}"> Opret bruger </a></li>
+            <div id="email" th:if="${session.user != null}">
+                <p th:text="${session.user.email}"></p>
+            </div>
+            <li th:if="${session.user == null}"><a th:href="@{/login}">Login </a></li>
+            <li th:if="${session.user == null}"><a th:href="@{/creatingAccount}">Opret bruger </a></li>
+            <li th:if="${session.user != null}"><a th:href="@{/logout}">Log Ud</a></li>
         </ul>
     </div>
     <nav class="navCenter">
@@ -48,19 +52,19 @@
                 <section class="profile-card">
                     <div class="profile-card-field">
                         <p class="profile-card-label">Fornavn:</p>
-                        <p class="profile-card-value" th:text="${client.fornavn}"></p>
+                        <p class="profile-card-value" th:text="${session.user.firstName}"></p>
                     </div>
                     <div class="profile-card-field">
                         <p class="profile-card-label">Efternavn:</p>
-                        <p class="profile-card-value" th:text="${client.efternavn}"></p>
+                        <p class="profile-card-value" th:text="${session.user.lastName}"></p>
                     </div>
                     <div class="profile-card-field">
                         <p class="profile-card-label">E-mail:</p>
-                        <p class="profile-card-value" th:text="${client.email}"></p>
+                        <p class="profile-card-value" th:text="${session.user.email}"></p>
                     </div>
                     <div class="profile-card-field">
                         <p class="profile-card-label">Saldo:</p>
-                        <p class="profile-card-value" th:text="${client.saldo}"></p>
+                        <p class="profile-card-value" th:text="${session.user.balance}"></p>
                     </div>
                 </section>
             </form>

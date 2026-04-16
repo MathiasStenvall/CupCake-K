@@ -17,8 +17,11 @@
             </div>
         </nav>
         <ul class="account">
-            <li><a th:href="@{/login}"> Login </a></li>
-            <li><a th:href="@{/creatingAccount}"> Opret bruger </a></li>
+            <div id="email" th:if="${session.user != null}">
+                <p th:text="${session.user.email}"></p>
+            </div>
+            <li th:if="${session.user == null}"><a th:href="@{/creatingAccount}">Opret bruger </a></li>
+            <li th:if="${session.user != null}"><a th:href="@{/logout}">Log Ud</a></li>
         </ul>
     </div>
 
@@ -61,6 +64,7 @@
             <button type="submit">Login</button>
 
         </form>
+
     </div>
 
 
