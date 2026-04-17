@@ -15,14 +15,14 @@ public class Basket {
     private List<Cupcake> basketCupcakes;
     private double basketTotalPrice;
 
-    public Basket (User basketUser, ConnectionPool cp){
+    public Basket(User basketUser, ConnectionPool cp) {
         this.basketUser = basketUser;
         basketCupcakes = new ArrayList<>();
         orderMapper = new OrderMapper(cp);
         userMapper = new UserMapper(cp);
     }
 
-    public void addCupcakeToBasket(Cupcake cupcake){
+    public void addCupcakeToBasket(Cupcake cupcake) {
         basketCupcakes.add(cupcake);
         basketTotalPrice += cupcake.getPrice() * cupcake.getAmount();
 
@@ -32,13 +32,13 @@ public class Basket {
         return basketCupcakes;
     }
 
-    public void removeCupcakeFromBasket(Cupcake cupcake){
+    public void removeCupcakeFromBasket(Cupcake cupcake) {
         basketCupcakes.remove(cupcake);
         basketTotalPrice -= cupcake.getPrice() * cupcake.getAmount();
     }
 
-    public boolean payBasket(){
-        if (basketUser.getBalance() >= basketTotalPrice){
+    public boolean payBasket() {
+        if (basketUser.getBalance() >= basketTotalPrice) {
             basketUser.setBalance(basketUser.getBalance() - basketTotalPrice);
 
             orderMapper.uploadOrder(basketUser, basketCupcakes, basketTotalPrice);
@@ -52,6 +52,12 @@ public class Basket {
         }
     }
 
+    public double getBasketTotalPrice() {
+        basketTotalPrice = 0;
+        for (Cupcake c : basketCupcakes) {
+            basketTotalPrice += c.getPrice() * c.getAmount();
+        }
 
-
+        return basketTotalPrice;
+    }
 }

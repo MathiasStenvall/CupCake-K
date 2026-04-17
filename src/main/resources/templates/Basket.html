@@ -22,8 +22,10 @@
             </div>
             <li th:if="${session.user == null}"><a th:href="@{/login}">Login </a></li>
             <li th:if="${session.user == null}"><a th:href="@{/creatingAccount}">Opret bruger </a></li>
-            <li th:if="${session.user != null && session.user.role == 'admin'}"><a th:href="@{/adminsite}">Admin</a></li>
-            <li th:if="${session.user != null && session.user.role == 'client'}"><a th:href="@{/profile}">Profil</a></li>
+            <li th:if="${session.user != null && session.user.role == 'admin'}"><a th:href="@{/adminsite}">Admin</a>
+            </li>
+            <li th:if="${session.user != null && session.user.role == 'client'}"><a th:href="@{/profile}">Profil</a>
+            </li>
             <li th:if="${session.user != null}"><a th:href="@{/logout}">Log Ud</a></li>
         </ul>
     </div>
@@ -76,7 +78,7 @@
                         </td>
                         <td class="action">
                             <form method="post" th:action="@{/delete}">
-                                <input type="hidden" name="basket.id" th:value="${basket.id}" />
+                                <input type="hidden" name="basket.id" th:value="${basket.id}"/>
                                 <button class="fotoIkon">
                                     <img src="/images/x.png">
                                 </button>
@@ -86,6 +88,7 @@
                     <tfoot>
                     <tr>
                         <td>Total pris</td>
+                        <td><span th:text="${session.basketTotal}"></span></td>
                         <td>Kr.</td>
                     </tr>
                     </tfoot>
@@ -95,7 +98,7 @@
 
                 </table>
                 <form th:action="@{/bestilordre}" method="post">
-                <button type="submit">Bestil</button>
+                    <button type="submit">Bestil</button>
                 </form>
             </div>
         </div>

@@ -86,6 +86,7 @@ public class ClientController {
                 basket.addCupcakeToBasket(cupcake);
             }
         }
+        ctx.sessionAttribute("basketTotal", basket.getBasketTotalPrice());
         ctx.render("Odrersite.html");
     }
 
@@ -93,12 +94,14 @@ public class ClientController {
         int cupcakeId = Integer.parseInt(ctx.formParam("basket.id"));
         basket.getBasketCupcakes().removeIf(c -> c.getId() == (cupcakeId));
         getBasket(ctx);
+
     }
 
     public void editCupcake(Context ctx){
     }
 
     public void getBasket(Context ctx){
+        ctx.sessionAttribute("basketTotal", basket.getBasketTotalPrice());
         ctx.render("Basket.html", Map.of("basketCupcakes", basket.getBasketCupcakes()));
     }
 
