@@ -7,8 +7,6 @@ import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 import persistence.ConnectionPool;
 import persistence.CupcakeMapper;
-
-import java.sql.Connection;
 import java.sql.SQLException;
 
 
