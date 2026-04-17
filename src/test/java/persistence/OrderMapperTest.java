@@ -2,6 +2,7 @@ package persistence;
 
 import entities.Client;
 import entities.Cupcake;
+import entities.Order;
 import entities.OrderList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -125,11 +126,10 @@ class OrderMapperTest {
     @org.junit.jupiter.api.Test
     void getAllOrders() {
 
-        OrderList orderList = new OrderList();
-        orderMapper.getAllOrders(orderList);
+        List<Order> orderList = orderMapper.getAllOrders();
 
         int expected = 2;
-        int actual = orderList.getOrderList().size();
+        int actual = orderList.size();
 
         assertEquals(expected, actual);
 
@@ -154,11 +154,10 @@ class OrderMapperTest {
 
         orderMapper.uploadOrder(mathias, cupcakeList, price);
 
-        OrderList orderList = new OrderList();
-        orderMapper.getAllOrders(orderList);
+        List<Order> orderList = orderMapper.getAllOrders();
 
         int expected = 3;
-        int actual = orderList.getOrderList().size();
+        int actual = orderList.size();
 
         assertEquals(expected,actual);
 
@@ -168,11 +167,10 @@ class OrderMapperTest {
     void removeOrder() {
 
         orderMapper.removeOrder(2);
-        OrderList orderList = new OrderList();
-        orderMapper.getAllOrders(orderList);
+        List<Order> orderList = orderMapper.getAllOrders();
 
         int expected = 1;
-        int actual = orderList.getOrderList().size();
+        int actual = orderList.size();
 
         assertEquals(expected, actual);
 
