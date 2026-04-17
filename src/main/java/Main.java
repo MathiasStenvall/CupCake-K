@@ -8,6 +8,9 @@ import io.javalin.rendering.template.JavalinThymeleaf;
 import persistence.ConnectionPool;
 import persistence.CupcakeMapper;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 
 public class Main {
 
@@ -17,7 +20,7 @@ public class Main {
     private static final String DB = "cupcake_shop";
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         Javalin app = Javalin.create(config -> {
             config.staticFiles.add("/public");
